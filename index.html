@@ -1,1172 +1,408 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
-<head>
-<!-- 2017-09-21 Thu 09:59 -->
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>A Self-Learning, Modern Computer Science Curriculum</title>
-<meta name="generator" content="Org mode" />
-<meta name="author" content="jbh" />
-<style type="text/css">
- <!--/*--><![CDATA[/*><!--*/
-  .title  { text-align: center;
-             margin-bottom: .2em; }
-  .subtitle { text-align: center;
-              font-size: medium;
-              font-weight: bold;
-              margin-top:0; }
-  .todo   { font-family: monospace; color: red; }
-  .done   { font-family: monospace; color: green; }
-  .priority { font-family: monospace; color: orange; }
-  .tag    { background-color: #eee; font-family: monospace;
-            padding: 2px; font-size: 80%; font-weight: normal; }
-  .timestamp { color: #bebebe; }
-  .timestamp-kwd { color: #5f9ea0; }
-  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
-  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
-  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
-  .underline { text-decoration: underline; }
-  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
-  p.verse { margin-left: 3%; }
-  pre {
-    border: 1px solid #ccc;
-    box-shadow: 3px 3px 3px #eee;
-    padding: 8pt;
-    font-family: monospace;
-    overflow: auto;
-    margin: 1.2em;
-  }
-  pre.src {
-    position: relative;
-    overflow: visible;
-    padding-top: 1.2em;
-  }
-  pre.src:before {
-    display: none;
-    position: absolute;
-    background-color: white;
-    top: -10px;
-    right: 10px;
-    padding: 3px;
-    border: 1px solid black;
-  }
-  pre.src:hover:before { display: inline;}
-  /* Languages per Org manual */
-  pre.src-asymptote:before { content: 'Asymptote'; }
-  pre.src-awk:before { content: 'Awk'; }
-  pre.src-C:before { content: 'C'; }
-  /* pre.src-C++ doesn't work in CSS */
-  pre.src-clojure:before { content: 'Clojure'; }
-  pre.src-css:before { content: 'CSS'; }
-  pre.src-D:before { content: 'D'; }
-  pre.src-ditaa:before { content: 'ditaa'; }
-  pre.src-dot:before { content: 'Graphviz'; }
-  pre.src-calc:before { content: 'Emacs Calc'; }
-  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-fortran:before { content: 'Fortran'; }
-  pre.src-gnuplot:before { content: 'gnuplot'; }
-  pre.src-haskell:before { content: 'Haskell'; }
-  pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
-  pre.src-latex:before { content: 'LaTeX'; }
-  pre.src-ledger:before { content: 'Ledger'; }
-  pre.src-lisp:before { content: 'Lisp'; }
-  pre.src-lilypond:before { content: 'Lilypond'; }
-  pre.src-lua:before { content: 'Lua'; }
-  pre.src-matlab:before { content: 'MATLAB'; }
-  pre.src-mscgen:before { content: 'Mscgen'; }
-  pre.src-ocaml:before { content: 'Objective Caml'; }
-  pre.src-octave:before { content: 'Octave'; }
-  pre.src-org:before { content: 'Org mode'; }
-  pre.src-oz:before { content: 'OZ'; }
-  pre.src-plantuml:before { content: 'Plantuml'; }
-  pre.src-processing:before { content: 'Processing.js'; }
-  pre.src-python:before { content: 'Python'; }
-  pre.src-R:before { content: 'R'; }
-  pre.src-ruby:before { content: 'Ruby'; }
-  pre.src-sass:before { content: 'Sass'; }
-  pre.src-scheme:before { content: 'Scheme'; }
-  pre.src-screen:before { content: 'Gnu Screen'; }
-  pre.src-sed:before { content: 'Sed'; }
-  pre.src-sh:before { content: 'shell'; }
-  pre.src-sql:before { content: 'SQL'; }
-  pre.src-sqlite:before { content: 'SQLite'; }
-  /* additional languages in org.el's org-babel-load-languages alist */
-  pre.src-forth:before { content: 'Forth'; }
-  pre.src-io:before { content: 'IO'; }
-  pre.src-J:before { content: 'J'; }
-  pre.src-makefile:before { content: 'Makefile'; }
-  pre.src-maxima:before { content: 'Maxima'; }
-  pre.src-perl:before { content: 'Perl'; }
-  pre.src-picolisp:before { content: 'Pico Lisp'; }
-  pre.src-scala:before { content: 'Scala'; }
-  pre.src-shell:before { content: 'Shell Script'; }
-  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
-  /* additional language identifiers per "defun org-babel-execute"
-       in ob-*.el */
-  pre.src-cpp:before  { content: 'C++'; }
-  pre.src-abc:before  { content: 'ABC'; }
-  pre.src-coq:before  { content: 'Coq'; }
-  pre.src-groovy:before  { content: 'Groovy'; }
-  /* additional language identifiers from org-babel-shell-names in
-     ob-shell.el: ob-shell is the only babel language using a lambda to put
-     the execution function name together. */
-  pre.src-bash:before  { content: 'bash'; }
-  pre.src-csh:before  { content: 'csh'; }
-  pre.src-ash:before  { content: 'ash'; }
-  pre.src-dash:before  { content: 'dash'; }
-  pre.src-ksh:before  { content: 'ksh'; }
-  pre.src-mksh:before  { content: 'mksh'; }
-  pre.src-posh:before  { content: 'posh'; }
-  /* Additional Emacs modes also supported by the LaTeX listings package */
-  pre.src-ada:before { content: 'Ada'; }
-  pre.src-asm:before { content: 'Assembler'; }
-  pre.src-caml:before { content: 'Caml'; }
-  pre.src-delphi:before { content: 'Delphi'; }
-  pre.src-html:before { content: 'HTML'; }
-  pre.src-idl:before { content: 'IDL'; }
-  pre.src-mercury:before { content: 'Mercury'; }
-  pre.src-metapost:before { content: 'MetaPost'; }
-  pre.src-modula-2:before { content: 'Modula-2'; }
-  pre.src-pascal:before { content: 'Pascal'; }
-  pre.src-ps:before { content: 'PostScript'; }
-  pre.src-prolog:before { content: 'Prolog'; }
-  pre.src-simula:before { content: 'Simula'; }
-  pre.src-tcl:before { content: 'tcl'; }
-  pre.src-tex:before { content: 'TeX'; }
-  pre.src-plain-tex:before { content: 'Plain TeX'; }
-  pre.src-verilog:before { content: 'Verilog'; }
-  pre.src-vhdl:before { content: 'VHDL'; }
-  pre.src-xml:before { content: 'XML'; }
-  pre.src-nxml:before { content: 'XML'; }
-  /* add a generic configuration mode; LaTeX export needs an additional
-     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
-  pre.src-conf:before { content: 'Configuration File'; }
+#+STARTUP: showall
+#+TITLE: A Self-Learning, Modern Computer Science Curriculum 
+#+AUTHOR: jbh
+#+OPTIONS: toc:2  
+* Introduction
 
-  table { border-collapse:collapse; }
-  caption.t-above { caption-side: top; }
-  caption.t-bottom { caption-side: bottom; }
-  td, th { vertical-align:top;  }
-  th.org-right  { text-align: center;  }
-  th.org-left   { text-align: center;   }
-  th.org-center { text-align: center; }
-  td.org-right  { text-align: right;  }
-  td.org-left   { text-align: left;   }
-  td.org-center { text-align: center; }
-  dt { font-weight: bold; }
-  .footpara { display: inline; }
-  .footdef  { margin-bottom: 1em; }
-  .figure { padding: 1em; }
-  .figure p { text-align: center; }
-  .inlinetask {
-    padding: 10px;
-    border: 2px solid gray;
-    margin: 10px;
-    background: #ffffcc;
-  }
-  #org-div-home-and-up
-   { text-align: right; font-size: 70%; white-space: nowrap; }
-  textarea { overflow-x: auto; }
-  .linenr { font-size: smaller }
-  .code-highlighted { background-color: #ffff00; }
-  .org-info-js_info-navigation { border-style: none; }
-  #org-info-js_console-label
-    { font-size: 10px; font-weight: bold; white-space: nowrap; }
-  .org-info-js_search-highlight
-    { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
-  /*]]>*/-->
-</style>
-<script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2017 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-<!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
-</script>
-</head>
-<body>
-<div id="content">
-<h1 class="title">A Self-Learning, Modern Computer Science Curriculum</h1>
-<div id="table-of-contents">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents">
-<ul>
-<li><a href="#org71f231a">1. Introduction</a>
-<ul>
-<li><a href="#orgd73b479">1.1. How Long Will This Take?</a></li>
-<li><a href="#org900e7d8">1.2. Build a Library (if you can't, use library genesis)</a></li>
-<li><a href="#orga5ddef7">1.3. How to Succeed</a></li>
-</ul>
-</li>
-<li><a href="#orgf430b61">2. Preliminaries</a>
-<ul>
-<li><a href="#org4c4b4f3">2.1. Learn How to Learn</a></li>
-<li><a href="#org7765b9d">2.2. Intro to Programming</a></li>
-<li><a href="#orgffcbf7f">2.3. Elementary Mathematics Survey</a></li>
-<li><a href="#orgfc1e243">2.4. Calculus</a></li>
-<li><a href="#orgf7fafc6">2.5. Intro to Mathematical Thinking</a></li>
-<li><a href="#orga42e942">2.6. Problem Solving</a></li>
-</ul>
-</li>
-<li><a href="#orge998e40">3. Fundamentals I: Mathematics Core</a>
-<ul>
-<li><a href="#org1c01a96">3.1. Recorded Lectures</a></li>
-<li><a href="#org07d9d58">3.2. Discrete Math with Standard ML</a></li>
-</ul>
-</li>
-<li><a href="#org6ff59a9">4. Fundamentals II: Abstraction</a>
-<ul>
-<li><a href="#org25f0ddf">4.1. Abstract Algebra I</a></li>
-<li><a href="#orga6e8533">4.2. Abstract Algebra II</a></li>
-<li><a href="#org34931c3">4.3. Low Level Abstraction</a></li>
-<li><a href="#orgec177f6">4.4. Meta-Linguistic Abstraction (Optional Elective)</a></li>
-</ul>
-</li>
-<li><a href="#orge2d96f2">5. Fundamentals III: Functional Programming</a>
-<ul>
-<li><a href="#org2228ebd">5.1. Principles of Functional Programming</a></li>
-<li><a href="#orgc40a341">5.2. Introduction to Parallel and Sequential Algorithms</a></li>
-<li><a href="#org78b702f">5.3. Programming Language Theory</a></li>
-<li><a href="#orge254dfb">5.4. Isolating Software Failure, Proving Safety and Testing</a></li>
-<li><a href="#org8ed439d">5.5. Designing Compilers (Optional Elective)</a></li>
-<li><a href="#orgb4170f0">5.6. Physical Systems Software Security (Optional Elective)</a></li>
-</ul>
-</li>
-<li><a href="#org0e1c8ad">6. Fundamentals IV: Algorithms &amp; Functional Persistent Data Structures, Complexity</a>
-<ul>
-<li><a href="#orgba54695">6.1. Advanced Algorithms</a></li>
-<li><a href="#org4e949bd">6.2. Undergraduate Complexity Theory</a></li>
-</ul>
-</li>
-<li><a href="#org3251c9c">7. You're Done the Fundamentals</a>
-<ul>
-<li><a href="#org682ff6d">7.1. Optional Extra Math</a></li>
-<li><a href="#org2690579">7.2. How to Get Better at Programming</a></li>
-</ul>
-</li>
-<li><a href="#org27d3eb5">8. Graduate Research Elective: Type Theory</a>
-<ul>
-<li><a href="#org454d8ab">8.1. Basic Proof Theory</a></li>
-<li><a href="#orgcd6c14d">8.2. Intro to Category Theory</a></li>
-<li><a href="#org0550851">8.3. Graduate Algebra Introduction</a></li>
-<li><a href="#orgfcf46a6">8.4. Type Theory Foundations</a></li>
-<li><a href="#org6166401">8.5. Higher Dimensional Type Theory</a></li>
-<li><a href="#org4c286ea">8.6. Further Research</a></li>
-</ul>
-</li>
-<li><a href="#org1c84d79">9. Graduate Research Elective: Machine Learning</a>
-<ul>
-<li><a href="#org8f7a7cb">9.1. Graduate Introduction to ML</a></li>
-<li><a href="#orgd002c05">9.2. Advanced Introduction to ML</a></li>
-<li><a href="#org858737d">9.3. Algorithms for Big Data</a></li>
-<li><a href="#org22ab78e">9.4. Further Research</a></li>
-</ul>
-</li>
-<li><a href="#orgb7a332e">10. Graduate Research Elective: Cryptography</a>
-<ul>
-<li><a href="#org6dfeddf">10.1. Graduate Cryptography Intro</a></li>
-<li><a href="#orgc5fff64">10.2. Theoretical Cryptography</a></li>
-<li><a href="#orgd02dba7">10.3. Applied Cryptography</a></li>
-<li><a href="#orgcfb7ef5">10.4. Coding Theory</a></li>
-<li><a href="#org8559965">10.5. Future Research</a></li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org71f231a" class="outline-2">
-<h2 id="org71f231a"><span class="section-number-2">1</span> Introduction</h2>
-<div class="outline-text-2" id="text-1">
-<blockquote>
-<p>
-"The great idea of constructive type theory is that there is no distinction between programs and proofs&#x2026; Theorems are types (specifications), and proofs are programs"
+#+BEGIN_QUOTE
+"The great idea of constructive type theory is that there is no distinction between programs and proofs... Theorems are types (specifications), and proofs are programs"
 (Robert Harper)
-</p>
-</blockquote>
-<p>
-This guide is based on Carnagie Mellon's new curriculum, for reasons why they rewrote it from scratch see Robert Harper's <a href="https://existentialtype.wordpress.com/2012/08/17/intro-curriculum-update/%20">blog</a> and his follow up <a href="https://existentialtype.wordpress.com/2011/03/21/the-dog-that-didnt-bark/">post</a> on the success of the new material.
+#+END_QUOTE
+This guide is based on Carnagie Mellon's new curriculum, for reasons why they rewrote it from scratch see Robert Harper's [[https://existentialtype.wordpress.com/2012/08/17/intro-curriculum-update/ ][blog]] and his follow up [[https://existentialtype.wordpress.com/2011/03/21/the-dog-that-didnt-bark/][post]] on the success of the new material.
 The goal of this guide is to build up to a senior undergrad level in computer science with the necessary rigorous background in fundamentals to understand academic papers in journals to continue self-learning.  
-</p>
-</div>
 
-<div id="outline-container-orgd73b479" class="outline-3">
-<h3 id="orgd73b479"><span class="section-number-3">1.1</span> How Long Will This Take?</h3>
-<div class="outline-text-3" id="text-1-1">
-<p>
-Depends on <a href="http://lifehacker.com/5886128/how-seinfelds-productivity-secret-fixed-my-procrastination-problem">daily effort</a>. Each entry is typically a class with about one semester worth of material and a regular undergrad student at any university will take <a href="https://www.csd.cs.cmu.edu/content/sample-undergraduate-course-sequence">5 courses</a> per semester with lectures 3 days a week for each course, and be assigned large projects plus multiple extra readings. Often these readings are entire texts, with the warning "exam questions from the assigned reading are fair game".
-Just make a commitment for one hour a day and see how far you get after a year. Because this guide almost exclusively uses functional programming you will write far less code and be able to complete a book like <i>Parallel and Sequential Algorithms</i> in one semester which would be impossible in an imperative language.
+** How Long Will This Take?
+Depends on [[http://lifehacker.com/5886128/how-seinfelds-productivity-secret-fixed-my-procrastination-problem][daily effort]]. Each entry is typically a class with about one semester worth of material and a regular undergrad student at any university will take [[https://www.csd.cs.cmu.edu/content/sample-undergraduate-course-sequence][5 courses]] per semester with lectures 3 days a week for each course, and be assigned large projects plus multiple extra readings. Often these readings are entire texts, with the warning "exam questions from the assigned reading are fair game".
+Just make a commitment for one hour a day and see how far you get after a year. Because this guide almost exclusively uses functional programming you will write far less code and be able to complete a book like /Parallel and Sequential Algorithms/ in one semester which would be impossible in an imperative language.
 The "functional" part in functional programming refers to mathematical functions, meaning functions where each input has a single output. This property then gives you referential transparency, immutability, and equational reasoning. 
-</p>
-</div>
-</div>
 
-<div id="outline-container-org900e7d8" class="outline-3">
-<h3 id="org900e7d8"><span class="section-number-3">1.2</span> Build a Library (if you can't, use library genesis)</h3>
-<div class="outline-text-3" id="text-1-2">
-<p>
+** Build a Library (if you can't, use library genesis)
 If you can, buy these books and start building yourself a library. Abe Books often has used copies, or global editions you can buy at significant discount. You will want them around for reference and it's good for motivation, 
 you get books off your desk and into the display shelf and have a physical reference for your accomplishments. It also saves your eyes from the strain of screens. If you can't afford these then try libgen.io (Library Genesis) to get a pdf/epub. 
-</p>
-</div>
-</div>
 
-<div id="outline-container-orga5ddef7" class="outline-3">
-<h3 id="orga5ddef7"><span class="section-number-3">1.3</span> How to Succeed</h3>
-<div class="outline-text-3" id="text-1-3">
-<p>
-This anecdote by Cal Newport on how he was able to get the <a href="http://calnewport.com/blog/2008/11/25/case-study-how-i-got-the-highest-grade-in-my-discrete-math-class/">best grade</a> in his Discrete Mathematics class involved him practicing proving every theorem given in the lectures and assigned reading 
-over and over until he could comfortably pick randomly through his notes and prove something without assistance. The more <a href="http://calnewport.com/blog/2010/01/06/the-grandmaster-in-the-corner-office-what-the-study-of-chess-experts-teaches-us-about-building-a-remarkable-life/">deliberate practice</a> you can do by completing the exercises and problem sets the 
-faster you will complete this curriculum, since you will be able to skip review chapters and will spend less time working on problems as you will have gained <a href="https://en.wikipedia.org/wiki/Mathematical_maturity">mathematical maturity</a>.  
-</p>
+** How to Succeed
 
-<p>
+This anecdote by Cal Newport on how he was able to get the [[http://calnewport.com/blog/2008/11/25/case-study-how-i-got-the-highest-grade-in-my-discrete-math-class/][best grade]] in his Discrete Mathematics class involved him practicing proving every theorem given in the lectures and assigned reading 
+over and over until he could comfortably pick randomly through his notes and prove something without assistance. The more [[http://calnewport.com/blog/2010/01/06/the-grandmaster-in-the-corner-office-what-the-study-of-chess-experts-teaches-us-about-building-a-remarkable-life/][deliberate practice]] you can do by completing the exercises and problem sets the 
+faster you will complete this curriculum, since you will be able to skip review chapters and will spend less time working on problems as you will have gained [[https://en.wikipedia.org/wiki/Mathematical_maturity][mathematical maturity]].  
+
 On Isaac Newton self-learning geometry:
-</p>
-<blockquote>
-<p>
-"He bought Descartes' Geometry and read it by himself .. when he was got over 2 or 3 pages he could understand no farther, than he began again and got 3 or 4 pages father till he came to another difficult place, than he began again and advanced farther and continued so doing till he made himself master of the whole without having the least light or instruction from anybody"
- (King's Cam.,Keynes MS 130.10,fol. 2/v/) 
-</p>
-</blockquote>
-</div>
-</div>
-</div>
+#+BEGIN_QUOTE
+ "He bought Descartes' Geometry and read it by himself .. when he was got over 2 or 3 pages he could understand no farther, than he began again and got 3 or 4 pages father till he came to another difficult place, than he began again and advanced farther and continued so doing till he made himself master of the whole without having the least light or instruction from anybody"
+  (King's Cam.,Keynes MS 130.10,fol. 2/v/) 
+#+END_QUOTE
 
-<div id="outline-container-orgf430b61" class="outline-2">
-<h2 id="orgf430b61"><span class="section-number-2">2</span> Preliminaries</h2>
-<div class="outline-text-2" id="text-2">
-<p>
+* Preliminaries 
 These are all optional of course if you are familiar with the material already.
-</p>
-</div>
 
-<div id="outline-container-org4c4b4f3" class="outline-3">
-<h3 id="org4c4b4f3"><span class="section-number-3">2.1</span> Learn How to Learn</h3>
-<div class="outline-text-3" id="text-2-1">
-<p>
+** Learn How to Learn
 This is a waste of time if you just watch lectures, and try one or two exercises. You will get the illusion of learning. Do as many exercises as possible, and if the course page has old exams and quizzes absolutely
-do them. Teaching Assistants (TAs) exist in universities to give guidence to students correcting their errors and answer questions, which you don't have access to so use <a href="http://cs.stackexchange.com/">stack exchange</a> instead. The only way to become an expert is learning from other experts.  
-</p>
+do them. Teaching Assistants (TAs) exist in universities to give guidence to students correcting their errors and answer questions, which you don't have access to so use [[http://cs.stackexchange.com/][stack exchange]] instead. The only way to become an expert is learning from other experts.  
 
-<ul class="org-ul">
-<li><a href="https://www.coursera.org/learn/learning-how-to-learn">(Full Course) Learning How to Learn</a>
-<ul class="org-ul">
-<li>Optional course but highly recommended.</li>
-</ul></li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-org7765b9d" class="outline-3">
-<h3 id="org7765b9d"><span class="section-number-3">2.2</span> Intro to Programming</h3>
-<div class="outline-text-3" id="text-2-2">
-<p>
+- [[https://www.coursera.org/learn/learning-how-to-learn][(Full Course) Learning How to Learn]]
+ - Optional course but highly recommended.
+  
+** Intro to Programming 
 If you've struggled with programming books in the past, worry not as this book/course has proven successs teaching a profoundly typed discipline to programming. 
-</p>
 
-<ul class="org-ul">
-<li><a href="https://www.edx.org/course/how-code-simple-data-ubcx-htc1x">(Full Course) How to Code: Simple Data</a>
-<ul class="org-ul">
-<li>Based on the book <a href="http://www.ccs.neu.edu/home/matthias/HtDP2e/">How to Design Programs (HtDP)</a> 
-<ul class="org-ul">
-<li>There is a Masters level <a href="http://www.ccs.neu.edu/course/cs5010f15/">bootcamp</a> to condense HtDP</li>
-</ul></li>
-<li>Some <a href="https://www.cs.cmu.edu/~15131/f16/">notes</a> on editors and version control (git) and how to write a good <a href="https://chris.beams.io/posts/git-commit/">commit comment</a></li>
-<li>Part two of the course is <a href="https://www.edx.org/course/how-code-complex-data-ubcx-htc2x">here</a> and covers Backtracking and traversing graphs</li>
-<li>Optional sequel to HtDP is <a href="http://papl.cs.brown.edu/2016/">PAPL</a></li>
-</ul></li>
-</ul>
-</div>
+- [[https://www.edx.org/course/how-code-simple-data-ubcx-htc1x][(Full Course) How to Code: Simple Data]]
+ - Based on the book [[http://www.ccs.neu.edu/home/matthias/HtDP2e/][How to Design Programs (HtDP)]] 
+   - There is also a Masters level [[http://www.ccs.neu.edu/course/cs5010f15/][bootcamp]] to condense HtDP  
+ - Some [[https://www.cs.cmu.edu/~15131/f16/][notes]] on editors and version control (git) and how to write a good [[https://chris.beams.io/posts/git-commit/][commit comment]]
+ - Part two of the course is [[https://www.edx.org/course/how-code-complex-data-ubcx-htc2x][here]] and covers Backtracking and traversing graphs
+ - Optional sequel to HtDP is [[http://papl.cs.brown.edu/2016/][PAPL]] 
 
-<div id="outline-container-org4eaf918" class="outline-4">
-<h4 id="org4eaf918"><span class="section-number-4">2.2.1</span> Alternative Intro</h4>
-<div class="outline-text-4" id="text-2-2-1">
-<p>
-The Little Schemer series books are a Q&amp;A format/Socratic method for learning the basics of recursion, types and other core ideas in Computer Science (read the Preface of each book). You can do the Little Schemer with pencil and paper. 
-</p>
+*** Alternative Intro
+The Little Schemer series books are a Q&A format/Socratic method for learning the basics of recursion, types and other core ideas in Computer Science (read the Preface of each book). You can do the Little Schemer with pencil and paper. 
 
-<ul class="org-ul">
-<li><a href="http://www.ccs.neu.edu/home/matthias/BTML/">(Book) The Little MLer - Matthias Felleisen, Daniel P. Friedman</a>
-<ul class="org-ul">
-<li>Teaches you to think recursively, and provides an introduction to the principles of types, computation, and program construction.</li>
-<li>Applies to any functional language, almost all the exercises can be done in OCaml or another language with a small amount of syntactic adjustment.</li>
-</ul></li>
-</ul>
-</div>
-</div>
-</div>
+- [[http://www.ccs.neu.edu/home/matthias/BTML/][(Book) The Little MLer - Matthias Felleisen, Daniel P. Friedman]]
+ - Teaches you to think recursively, and provides an introduction to the principles of types, computation, and program construction.
+ - Applies to any functional language, almost all the exercises can be done in OCaml or another language with a small amount of syntactic adjustment. 
 
-<div id="outline-container-orgffcbf7f" class="outline-3">
-<h3 id="orgffcbf7f"><span class="section-number-3">2.3</span> Elementary Mathematics Survey</h3>
-<div class="outline-text-3" id="text-2-3">
-<p>
-Build a better foundation of elementary mathematics. Go through this mathematics <a href="https://www.maths.cam.ac.uk/sites/www.maths.cam.ac.uk/files/pre2014/undergrad/admissions/readinglist.pdf">reading list</a> from Cambridge University and choose any books that interest you, the books by T.W. Körner provide excellent
-insight, and <i>A Concise Introduction to Pure Mathematics</i> by Martin Liebeck compliments the Stillwell book.
-</p>
+** Elementary Mathematics Survey
+Build a better foundation of elementary mathematics. Go through this mathematics [[https://www.maths.cam.ac.uk/sites/www.maths.cam.ac.uk/files/pre2014/undergrad/admissions/readinglist.pdf][reading list]] from Cambridge University and choose any books that interest you, the books by T.W. Körner provide excellent
+insight, and /A Concise Introduction to Pure Mathematics/ by Martin Liebeck compliments the Stillwell book.
 
-<ul class="org-ul">
-<li><a href="http://press.princeton.edu/titles/10697.html">(Book) Elements of Mathematics: From Euclid to Gödel - John Stillwell</a>
-<ul class="org-ul">
-<li>A Mathematicians survey of elementary topics in Algebra, Arithmetic, Combinatorics/Discrete Math, Calculus, Probability, Logic ect.</li>
-<li>Casual read for anybody interested in gaining intuition into the big picture of elementary math topics</li>
-<li>If you are totally lost refer to <a href="http://precalculus.axler.net/">Precalculus - Sheldon Axler</a> or <i>What is Mathematics?</i> by R. Courant &amp; H. Robbins to directly look up what you don't remember.</li>
-</ul></li>
-</ul>
-</div>
-</div>
+- [[http://press.princeton.edu/titles/10697.html][(Book) Elements of Mathematics: From Euclid to Gödel - John Stillwell]]
+ - A Mathematicians survey of elementary topics in Algebra, Arithmetic, Combinatorics/Discrete Math, Calculus, Probability, Logic ect.
+ - Casual read for anybody interested in gaining intuition into the big picture of elementary math topics
+ - If you are totally lost refer to [[http://precalculus.axler.net/][Precalculus - Sheldon Axler]] or /What is Mathematics?/ by R. Courant & H. Robbins to directly look up what you don't remember. 
 
-<div id="outline-container-orgfc1e243" class="outline-3">
-<h3 id="orgfc1e243"><span class="section-number-3">2.4</span> Calculus</h3>
-<div class="outline-text-3" id="text-2-4">
-<p>
+** Calculus
 Many courses listed here assume you have a basic Calculus background since all university students do, so often will have examples to provide insight using Calculus they expect you to be familiar with. 
 It's also worth knowing Calculus for it's own sake, as the fundamental theorem of Calculus is a major breakthrough in terms of cultural importance and it's heavily used in all engineering
 disciplines and for finance and AI (stats), probability (integration), optimization (differentiation), analysis, and to further build mathematical maturity by learning to solve problems.
-</p>
 
-<p>
 The best way to learn math is to just jump in and look up anything you come across you don't remember instead of going back to square one and redoing everything. If you don't remember cosine/sine then 
 look up the tutorials on Khan Academy or any precalculus book and attempt the exercises in the calculus book instead of spending a week redoing elementary math. The more exercises you do the better you 
-will get at this material and soon will no longer need any refresher material. 
-</p>
+will get at this material and soon will no longer need any refresher material.  
+    
+- [[https://openlibrary.org/works/OL10687737W/Calculus_and_analytic_geometry][(Book) Calculus & Analytic Geometry - Thomas]] 
+ - You want the [[https://www.amazon.com/Calculus-Analytic-Geometry-3rd-Mathematics/dp/B0000CKUFL][third]] or [[http://a.co/a8WBwMo][fourth]] edition from the 1960s. This [[https://www.amazon.com/gp/customer-reviews/R1HJTYVOE94R83/ref=cm_cr_dp_d_rvw_ttl?ie=UTF8&ASIN=0201077795][Amazon comment]] explains the difference in the editions. The "Classic" edition is the second ed.
+ - Various different printings exist, some split the book into 2 parts, other printings have both contained in one volume.  
+ - This is the book Don Knuth liked so much he chose Addison-Wesley as his publisher for /The Art of Computer Programming/ series. 
+  - See Gilbert Strang's [[https://ocw.mit.edu/resources/res-18-005-highlights-of-calculus-spring-2010/][Highlights of Calculus]] for a survey of calculus and more intuition if necessary. 
+ - Alternatively read /Calculus: Early Transcendentals/ by James Stewart which CMU uses.
+ - See [[https://math.vanderbilt.edu/schectex/commerrs/][Common Errors in Undergrad Math]] like undistributed cancellations, sign errors, confusion about notation ect.
+  
+** Intro to Mathematical Thinking
 
-<ul class="org-ul">
-<li><a href="https://openlibrary.org/works/OL10687737W/Calculus_and_analytic_geometry">(Book) Calculus &amp; Analytic Geometry - Thomas</a> 
-<ul class="org-ul">
-<li>You want the <a href="https://www.amazon.com/Calculus-Analytic-Geometry-3rd-Mathematics/dp/B0000CKUFL">third</a> or <a href="http://a.co/a8WBwMo">fourth</a> edition from the 1960s. This <a href="https://www.amazon.com/gp/customer-reviews/R1HJTYVOE94R83/ref=cm_cr_dp_d_rvw_ttl?ie=UTF8&amp;ASIN=0201077795">Amazon comment</a> explains the difference in the editions. The "Classic" edition is the second ed.</li>
-<li>Various different printings exist, some split the book into 2 parts, other printings have both contained in one volume.</li>
-<li>This is the book Don Knuth liked so much he chose Addison-Wesley as his publisher for <i>The Art of Computer Programming</i> series. 
-<ul class="org-ul">
-<li>See Gilbert Strang's <a href="https://ocw.mit.edu/resources/res-18-005-highlights-of-calculus-spring-2010/">Highlights of Calculus</a> for a survey of calculus and more intuition if necessary.</li>
-</ul></li>
-<li>Alternatively read <i>Calculus: Early Transcendentals</i> by James Stewart which CMU uses.</li>
-<li>See <a href="https://math.vanderbilt.edu/schectex/commerrs/">Common Errors in Undergrad Math</a> like undistributed cancellations, sign errors, confusion about notation ect.</li>
-</ul></li>
-</ul>
-</div>
-</div>
+- [[http://www.kevinhouston.net/httlam.html][(Book) How to Think Like A Mathematician - Kevin Houston]]
+ - How to read theorems and definitions, how to write proofs
+ - How to read a [[https://www.cs.jhu.edu/~jason/advice/how-to-read-a-paper.html][research paper]]
+  - Optional [[http://www.people.vcu.edu/~rhammack/BookOfProof/][Book of Proof - Hammack]] online free version
 
-<div id="outline-container-orgf7fafc6" class="outline-3">
-<h3 id="orgf7fafc6"><span class="section-number-3">2.5</span> Intro to Mathematical Thinking</h3>
-<div class="outline-text-3" id="text-2-5">
-<ul class="org-ul">
-<li><a href="http://www.kevinhouston.net/httlam.html">(Book) How to Think Like A Mathematician - Kevin Houston</a>
-<ul class="org-ul">
-<li>How to read theorems and definitions, how to write proofs</li>
-<li>How to read a <a href="https://www.cs.jhu.edu/~jason/advice/how-to-read-a-paper.html">research paper</a>
-<ul class="org-ul">
-<li>Optional <a href="http://www.people.vcu.edu/~rhammack/BookOfProof/">Book of Proof - Hammack</a> online free version</li>
-</ul></li>
-</ul></li>
-</ul>
-</div>
-</div>
+** Problem Solving 
+#+BEGIN_QUOTE
+  "So I went to Case, and the Dean of Case says to us, it’s a all men’s school, “Men, look at, look to the person on your left, and the person on your right. One of you isn’t going to be here next year; one of you is going to fail.” So I get to Case, and again I’m studying all the time, working really hard on my classes, and so for that I had to be kind of a machine.
+  In high school, our math program wasn’t much, and I had never heard of calculus until I got to college. But the calculus book that we had was (in college) was great, and in the back of the book there were supplementary problems that weren’t assigned by the teacher. So this was a famous calculus text by a man named George Thomas (second edition), and I mention it especially because it was one of the first books published by Addison-Wesley, and I loved this calculus book so much that later I chose Addison-Wesley to be the publisher of my own book.
+  Our teacher would assign, say, the even numbered problems, or something like that (from the book). I would also do the odd numbered problems. In the back of Thomas’s book he had supplementary problems, the teacher didn’t assign the supplementary problems; I worked the supplementary problems. I was scared I wouldn’t learn calculus, so I worked hard on it, and it turned out that of course it took me longer to solve all these problems than the kids who were only working on what was assigned, at first. 
+  But after a year, I could do all of those problems in the same time as my classmates were doing the assigned problems, and after that /I could just coast in mathematics, because I’d learned how to solve problems/"
+ ([[https://github.com/kragen/knuth-interview-2006][Don Knuth]] )
+#+END_QUOTE
 
-<div id="outline-container-orga42e942" class="outline-3">
-<h3 id="orga42e942"><span class="section-number-3">2.6</span> Problem Solving</h3>
-<div class="outline-text-3" id="text-2-6">
-<blockquote>
-<p>
- "So I went to Case, and the Dean of Case says to us, it’s a all men’s school, “Men, look at, look to the person on your left, and the person on your right. One of you isn’t going to be here next year; one of you is going to fail.” So I get to Case, and again I’m studying all the time, working really hard on my classes, and so for that I had to be kind of a machine.
- In high school, our math program wasn’t much, and I had never heard of calculus until I got to college. But the calculus book that we had was (in college) was great, and in the back of the book there were supplementary problems that weren’t assigned by the teacher. So this was a famous calculus text by a man named George Thomas (second edition), and I mention it especially because it was one of the first books published by Addison-Wesley, and I loved this calculus book so much that later I chose Addison-Wesley to be the publisher of my own book.
- Our teacher would assign, say, the even numbered problems, or something like that (from the book). I would also do the odd numbered problems. In the back of Thomas’s book he had supplementary problems, the teacher didn’t assign the supplementary problems; I worked the supplementary problems. I was scared I wouldn’t learn calculus, so I worked hard on it, and it turned out that of course it took me longer to solve all these problems than the kids who were only working on what was assigned, at first. 
- But after a year, I could do all of those problems in the same time as my classmates were doing the assigned problems, and after that <i>I could just coast in mathematics, because I’d learned how to solve problems</i>"
-(<a href="https://github.com/kragen/knuth-interview-2006">Don Knuth</a> )
-</p>
-</blockquote>
+- [[http://wiley.com/WileyCDA/WileyTitle/productCd-EHEP003691.html][(Book) The Art and Craft of Problem Solving - Paul Zeitz]]
+ - Any edition will do
+ - Written by former coach of the US Math Olympiad team
+ - First 3 chapters have excellent strategies, such as finding invariants, pigeonhole principal ect.
+  - Other chapters are optional but are very relevant to all the material here 
+ - Alternative [[https://terrytao.wordpress.com/books/solving-mathematical-problems/][read]] /Solving Mathematical Problems/ by Terence Tao for strategies
 
-<ul class="org-ul">
-<li><a href="http://wiley.com/WileyCDA/WileyTitle/productCd-EHEP003691.html">(Book) The Art and Craft of Problem Solving - Paul Zeitz</a>
-<ul class="org-ul">
-<li>Any edition will do</li>
-<li>Written by former coach of the US Math Olympiad team</li>
-<li>First 3 chapters have excellent strategies, such as finding invariants, pigeonhole principal ect.
-<ul class="org-ul">
-<li>Other chapters are optional but are very relevant to all the material here</li>
-</ul></li>
-<li>Alternative <a href="https://terrytao.wordpress.com/books/solving-mathematical-problems/">read</a> <i>Solving Mathematical Problems</i> by Terence Tao for strategies</li>
-</ul></li>
-</ul>
+- [[https://en.wikipedia.org/wiki/How_to_Solve_It][(Wikipedia) How to Solve it - George Polya]]
+ - Summary on stragies in the book, optionally read whole book
+  - There is also Descartes [[https://en.wikipedia.org/wiki/Discourse_on_the_Method][Discourse On the Method]]
+ 
+* Fundamentals I: Mathematics Core   
 
-
-<ul class="org-ul">
-<li><a href="https://en.wikipedia.org/wiki/How_to_Solve_It">(Wikipedia) How to Solve it - George Polya</a>
-<ul class="org-ul">
-<li>Summary on stragies in the book, optionally read whole book
-<ul class="org-ul">
-<li>There is also Descartes <a href="https://en.wikipedia.org/wiki/Discourse_on_the_Method">Discourse On the Method</a></li>
-</ul></li>
-</ul></li>
-</ul>
-</div>
-</div>
-</div>
-
-<div id="outline-container-orge998e40" class="outline-2">
-<h2 id="orge998e40"><span class="section-number-2">3</span> Fundamentals I: Mathematics Core</h2>
-<div class="outline-text-2" id="text-3">
-</div><div id="outline-container-org1c01a96" class="outline-3">
-<h3 id="org1c01a96"><span class="section-number-3">3.1</span> Recorded Lectures</h3>
-<div class="outline-text-3" id="text-3-1">
-<p>
+** Recorded Lectures
 Watch these as you do the book. The CMU lectures also cover some linear algebra and Complexity Theory while the MIT lectures are great for understanding induction.
-</p>
 
-<ul class="org-ul">
-<li>CMU 15-251 <i>Great Theoretical Ideas in Computer Science</i> <a href="https://www.youtube.com/playlist?list=PLm3J0oaFux3aafQm568blS9blxtA_EWQv">lectures</a> and <a href="http://scs.hosted.panopto.com/Panopto/Podcast/Podcast.ashx?courseid=bcf8243e-cf18-481f-960f-3c5b26fbb69b&amp;type=mp4">backup lectures</a> and <a href="http://www.cs.cmu.edu/~arielpro/15251f15/notes/notes-current3.pdf">course notes</a></li>
-<li>(Optional) MIT 6.042j <i>Mathematics for Computer Science</i> <a href="https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-042j-mathematics-for-computer-science-fall-2010/video-lectures/">lectures</a> and <a href="https://courses.csail.mit.edu/6.042/spring17/mcs.pdf">course notes</a></li>
-</ul>
-</div>
-</div>
+- CMU 15-251 /Great Theoretical Ideas in Computer Science/ [[https://www.youtube.com/playlist?list=PLm3J0oaFux3aafQm568blS9blxtA_EWQv][lectures]] and [[http://scs.hosted.panopto.com/Panopto/Podcast/Podcast.ashx?courseid=bcf8243e-cf18-481f-960f-3c5b26fbb69b&type=mp4][backup lectures]] and [[http://www.cs.cmu.edu/~arielpro/15251f15/notes/notes-current3.pdf][course notes]] 
+- (Optional) MIT 6.042j /Mathematics for Computer Science/ [[https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-042j-mathematics-for-computer-science-fall-2010/video-lectures/][lectures]] and [[https://courses.csail.mit.edu/6.042/spring17/mcs.pdf][course notes]]
 
-<div id="outline-container-org07d9d58" class="outline-3">
-<h3 id="org07d9d58"><span class="section-number-3">3.2</span> Discrete Math with Standard ML</h3>
-<div class="outline-text-3" id="text-3-2">
-<p>
-The merging of proof and program is what makes this a great book. ML syntax and concepts is similar to set notation, you really should get this book if you can. If you can't the MIT <a href="https://courses.csail.mit.edu/6.042/spring17/mcs.pdf">lecture notes</a> for 6.042j will work
-as well combined with the recorded CMU/MIT lectures. You can also start 15-150 <i>Principles of Functional Programming</i> at the same time you start discrete math. 
-</p>
+** Discrete Math with Standard ML
+The merging of proof and program is what makes this a great book. If you can't get this book (you should definitely get the book) the MIT [[https://courses.csail.mit.edu/6.042/spring17/mcs.pdf][lecture notes]] will work along with some kind of introductory material on [[https://en.wikipedia.org/wiki/Naive_set_theory][Set Theory]] such as the free [[https://www.people.vcu.edu/~rhammack/BookOfProof/][Book Of Proof]]. 
+Set theory will come up everywhere in future courses, like the cardinality of a finite set in relational databases, and ML syntax is similar to set notation.
+You can also start 15-150 /Principles of Functional Programming/ at the same time you start discrete math. 
 
-<ul class="org-ul">
-<li><a href="https://cs.wheaton.edu/~tvandrun/dmfp/">(Book/Lectures) Discrete Mathematics and Functional Programming - Thomas VanDrunen</a>
-<ul class="org-ul">
-<li>Lectures exist on the author's homepage, this book is used for a one semester university course with additional elective chapters in Graph Theory, Complexity Theory, Automata, ect.</li>
-<li>Combine these chapters with the above recorded lectures by CMU/MIT.</li>
-<li>List of <a href="https://math.vanderbilt.edu/schectex/commerrs/">Common Errors in Undergrad Math</a> like undistributed cancellations, sign errors, confusion about notation ect. if you missed it from the prelims section of this guide
-<ul class="org-ul">
-<li>See Robert Harper's blog post on <a href="https://existentialtype.wordpress.com/2017/03/04/a-proof-by-contradiction-is-not-a-proof-that-derives-a-contradiction/">proof by contradiction</a></li>
-<li>Read Lambda Calculus: <a href="http://www.cs.cmu.edu/~rwh/papers/lctotm/cs50.pdf">The Other Turing Machine</a></li>
-</ul></li>
-</ul></li>
-</ul>
-</div>
+- [[https://cs.wheaton.edu/~tvandrun/dmfp/][(Book/Lectures) Discrete Mathematics and Functional Programming - Thomas VanDrunen]]
+ - Lectures exist on the author's homepage, this book is used for a one semester university course with additional elective chapters in Graph Theory, Complexity Theory, Automata, ect. 
+ - Combine these chapters with the above recorded lectures by CMU/MIT.
+ - List of [[https://math.vanderbilt.edu/schectex/commerrs/][Common Errors in Undergrad Math]] like undistributed cancellations, sign errors, confusion about notation ect. if you missed it from the prelims section of this guide
+  - See Robert Harper's blog post on [[https://existentialtype.wordpress.com/2017/03/04/a-proof-by-contradiction-is-not-a-proof-that-derives-a-contradiction/][proof by contradiction]]
+  - Read Lambda Calculus: [[http://www.cs.cmu.edu/~rwh/papers/lctotm/cs50.pdf][The Other Turing Machine]]
 
-<div id="outline-container-org6b9dc0e" class="outline-4">
-<h4 id="org6b9dc0e"><span class="section-number-4">3.2.1</span> Additional Exercises to Build Mathematical Maturity</h4>
-<div class="outline-text-4" id="text-3-2-1">
-<p>
+*** Additional Exercises to Build Mathematical Maturity
 The more practice you have the better you will understand this material
-</p>
 
-<ul class="org-ul">
-<li>Go through the lecture notes for both 15-251/6.042j and try to prove the example propositions and theorems yourself</li>
-<li>Try the exercises in <a href="http://www-cs-faculty.stanford.edu/~knuth/gkp.html">Concrete Mathematics</a> for deliberate practice. It is an accessible (and rigorous) book to all levels of math backgrounds as Knuth is a good teacher.</li>
-<li>Buy a used copy (any edition) of <i>The Art of Computer Programming Vol 1: Fundamental Algorithms</i> by Donald E. Knuth and try the exercises in 1.1 and 1.2.x chapters, and 2.3.4.x <i>Basic Mathematical Properties of Trees</i></li>
-</ul>
-</div>
-</div>
-</div>
-</div>
+  - Go through the lecture notes for both 15-251/6.042j and try to prove the example propositions and theorems yourself
+  - Try the exercises in [[http://www-cs-faculty.stanford.edu/~knuth/gkp.html][Concrete Mathematics]] for deliberate practice. It is an accessible (and rigorous) book to all levels of math backgrounds as Knuth is a good teacher. 
+  - Buy a used copy (any edition) of /The Art of Computer Programming Vol 1: Fundamental Algorithms/ by Donald E. Knuth and try the exercises in 1.1 and 1.2.x chapters, and 2.3.4.x /Basic Mathematical Properties of Trees/
+ 
+* Fundamentals II: Abstraction 
+Functional programming languages support algebraic datatypes, and besides direct applications to CS this material will train your mind in reasoning about abstractions.
 
-<div id="outline-container-org6ff59a9" class="outline-2">
-<h2 id="org6ff59a9"><span class="section-number-2">4</span> Fundamentals II: Abstraction</h2>
-<div class="outline-text-2" id="text-4">
-<p>
-Functional programming languages support algebraic datatypes, and besides direct applications to CS this material will train your mind in building up and reasoning about abstractions.
-</p>
-</div>
+** Abstract Algebra I 
 
-<div id="outline-container-org25f0ddf" class="outline-3">
-<h3 id="org25f0ddf"><span class="section-number-3">4.1</span> Abstract Algebra I</h3>
-<div class="outline-text-3" id="text-4-1">
-<ul class="org-ul">
-<li><a href="http://www.springer.com/gp/book/9780387940991">(Book) Linear Algebra: An Introduction to Abstract Mathematics - Robert J. Valenza</a>
-<ul class="org-ul">
-<li>Focuses on the geometric intuition of linear algebra</li>
-<li>These YouTube presentations <a href="https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab">here</a> help with understanding the topics on a geometric level. Watch the <a href="https://youtu.be/kjBOesZCoqc?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab">Essence of Linear Algebra</a> to see what this means</li>
-<li>These <a href="https://www.youtube.com/playlist?list=PLIljB45xT85BhzJ-oWNug1YtUjfWp1qAp">recorded</a> lectures also focus on a more geometric understanding of linear algebra by Prof N J Wildberger and go well with the Valenza text 
-<ul class="org-ul">
-<li>Gilbert Strang also has a full Linear Algebra intro course <a href="https://ocw.mit.edu/courses/mathematics/18-06-linear-algebra-spring-2010/video-lectures/">here</a> with recorded lectures</li>
-</ul></li>
-</ul></li>
-</ul>
-</div>
-</div>
+- [[http://www.springer.com/gp/book/9780387940991][(Book) Linear Algebra: An Introduction to Abstract Mathematics - Robert J. Valenza]]
+ - Focuses on the geometric intuition of linear algebra 
+ - These YouTube presentations [[https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab][here]] help with understanding the topics on a geometric level. Watch the [[https://youtu.be/kjBOesZCoqc?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab][Essence of Linear Algebra]] to see what this means
+ - These [[https://www.youtube.com/playlist?list=PLIljB45xT85BhzJ-oWNug1YtUjfWp1qAp][recorded]] lectures also focus on a more geometric understanding of linear algebra by Prof N J Wildberger and go well with the Valenza text 
+  - Gilbert Strang also has a full Linear Algebra intro course [[https://ocw.mit.edu/courses/mathematics/18-06-linear-algebra-spring-2010/video-lectures/][here]] with recorded lectures
 
-<div id="outline-container-orga6e8533" class="outline-3">
-<h3 id="orga6e8533"><span class="section-number-3">4.2</span> Abstract Algebra II</h3>
-<div class="outline-text-3" id="text-4-2">
-<ul class="org-ul">
-<li><a href="https://www.math.upenn.edu/~ted/371F14/hw-371SchedTab.html">(Full Course) Math-371 Abstract Algebra</a>
-<ul class="org-ul">
-<li>Has recorded lectures which are essential as you can quickly get lost in the texts at this level of abstraction</li>
-<li>Uses readings from <a href="https://www.math.upenn.edu/~ted/371F14/info.html#texts">three texts</a>  
-<ul class="org-ul">
-<li>There is also this <a href="http://www.extension.harvard.edu/open-learning-initiative/abstract-algebra">Harvard course</a> with excellent recorded lectures and uses readings from <i>Algebra - M. Artin</i> (blue book) as a great compliment to Math-371 lectures</li>
-</ul></li>
-<li>Optional <a href="http://www.math.hawaii.edu/~lee/algebra/history.html">history</a> of Abstract Algebra by Prof Lee Lady</li>
-</ul></li>
-</ul>
-</div>
-</div>
+** Abstract Algebra II 
 
-<div id="outline-container-org34931c3" class="outline-3">
-<h3 id="org34931c3"><span class="section-number-3">4.3</span> Low Level Abstraction</h3>
-<div class="outline-text-3" id="text-4-3">
-<blockquote>
-<p>
-"[Computer science] is not really about computers - and it's not about computers in the same sense that physics is not really about particle accelerators, and biology is not about microscopes and Petri dishes&#x2026;and geometry isn't really about using surveying instruments. Now the reason that we think computer science is about computers is pretty much the same reason that the Egyptians thought geometry was about surveying instruments: when some field is just getting started and you don't really understand it very well, it's very easy to confuse the essence of what you're doing with the tools that you use." (Hal Abelson) 
-</p>
-</blockquote>
+- [[https://www.math.upenn.edu/~ted/371F14/hw-371SchedTab.html][(Full Course) Math-371 Abstract Algebra]]
+ - Has recorded lectures which are essential as you can quickly get lost in the texts at this level of abstraction
+ - Uses readings from [[https://www.math.upenn.edu/~ted/371F14/info.html#texts][three texts]]  
+  - There is also this [[http://www.extension.harvard.edu/open-learning-initiative/abstract-algebra][Harvard course]] with excellent recorded lectures and uses readings from /Algebra - M. Artin/ (blue book) as a great compliment to Math-371 lectures 
+ - Optional [[http://www.math.hawaii.edu/~lee/algebra/history.html][history]] of Abstract Algebra by Prof Lee Lady 
 
-<p>
+** Low Level Abstraction
+
+#+BEGIN_QUOTE
+"[Computer science] is not really about computers - and it's not about computers in the same sense that physics is not really about particle accelerators, and biology is not about microscopes and Petri dishes...and geometry isn't really about using surveying instruments. Now the reason that we think computer science is about computers is pretty much the same reason that the Egyptians thought geometry was about surveying instruments: when some field is just getting started and you don't really understand it very well, it's very easy to confuse the essence of what you're doing with the tools that you use." (Hal Abelson) 
+#+END_QUOTE
+
 This covers computer architecture from a programmer's perspective, such as how to write cache friendly code, and other optimizations for the x86-64 arch. You learn how to manually write loops in assembly 
-and see how recursion works at the lowest abstraction. You learn machine code instructions, return oriented programming to bypass stack protections, the memory hierarchy, and networks. You could read K&amp;R's 
-<i>The C Programming Language</i> for a brief intro, though this course will explain C as you go anyway and fully covers pointers at the assembly language level. 
-</p>
+and see how recursion works at the lowest abstraction. You learn machine code instructions, return oriented programming to bypass stack protections, the memory hierarchy, and networks. You could read K&R's 
+/The C Programming Language/ for a brief intro, though this course will explain C as you go anyway and fully covers pointers at the assembly language level. 
 
-<ul class="org-ul">
-<li><a href="https://www.cs.cmu.edu/~213/schedule.html">(Full Course) 15-213 Intro to Computer Systems (CMU)</a> 
-<ul class="org-ul">
-<li>Recorded lectures <a href="http://scs.hosted.panopto.com/Panopto/Podcast/Podcast.ashx?courseid=b96d90ae-9871-4fae-91e2-b1627b43e25e&amp;type=mp4">here</a></li>
-<li>Buy the CS:APP book, 3rd version either used or get the global version.
-<ul class="org-ul">
-<li>The labs (Data Lab, Bomb Lab ect) are on the <a href="http://csapp.cs.cmu.edu/3e/students.html">book website</a>.</li>
-</ul></li>
-<li>Read this post on <a href="https://existentialtype.wordpress.com/2011/03/15/boolean-blindness/">Boolean Blindness</a> to not get lost in imperative programming.</li>
-<li>You can also do Unix programming in <a href="http://mlton.org/References.attachments/Shipman02.pdf">Standard ML(pdf)</a></li>
-<li>Try the embedded security CTF <a href="https://microcorruption.com/login">here</a> after you finish the Attack Lab.
-<ul class="org-ul">
-<li>(Optional) There is an OS class <a href="http://rust-class.org/pages/classes.html">here</a> that uses <a href="https://www.nostarch.com/Rust">Rust</a></li>
-<li>(Optional) A series of <a href="http://db.cs.cmu.edu/courses/">database courses</a> the Advanced class has recorded lectures and covers a memory only modern dbms</li>
-</ul></li>
-</ul></li>
-</ul>
-</div>
-</div>
+- [[https://www.cs.cmu.edu/~213/schedule.html][(Full Course) 15-213 Intro to Computer Systems (CMU)]] 
+ - Recorded lectures [[http://scs.hosted.panopto.com/Panopto/Podcast/Podcast.ashx?courseid=b96d90ae-9871-4fae-91e2-b1627b43e25e&type=mp4][here]]
+ - Buy the CS:APP book, 3rd version either used or get the global version.
+  - The labs (Data Lab, Bomb Lab ect) are on the [[http://csapp.cs.cmu.edu/3e/students.html][book website]]. 
+ - Read this post on [[https://existentialtype.wordpress.com/2011/03/15/boolean-blindness/][Boolean Blindness]] to not get lost in imperative programming. 
+ - You can also do Unix programming in [[http://mlton.org/References.attachments/Shipman02.pdf][Standard ML(pdf)]]
+ - Try the embedded security CTF [[https://microcorruption.com/login][here]] after you finish the Attack Lab.
+  - (Optional) There is an OS class [[http://rust-class.org/pages/classes.html][here]] that uses [[https://www.nostarch.com/Rust][Rust]] 
+  
+** Data Modelling 
+Abstracting data to model it however you want using advanced SQL with a standard relational dbms like SQLite.
+ 
+- [[http://15445.courses.cs.cmu.edu/fall2017/schedule.html][(Full Course) 15-445 Database Systems (CMU)]]
+ - Recorded lectures on [[https://www.youtube.com/playlist?list=PLSE8ODhjZXjYutVzTeAds8xUt1rcmyT7x][youtube]]
+ - Uses readings from this [[http://db-book.com/][book]], assumes you have taken 15-213 and know some basic set theory
+  - (Optional) An [[http://15721.courses.cs.cmu.edu/spring2017/schedule.html][advanced class]] w/recorded lectures on building your own dbms  
 
-<div id="outline-container-orgec177f6" class="outline-3">
-<h3 id="orgec177f6"><span class="section-number-3">4.4</span> Meta-Linguistic Abstraction (Optional Elective)</h3>
-<div class="outline-text-3" id="text-4-4">
-<p>
-This is optional but highly recommended. There's a package manager <a href="http://dustycloud.org/misc/talks/guix/chicagolug_2015/guix_talk.html">Guix</a> and distro GuixSD. You configure packages, or your entire system with declarative programming in scheme (Guile), and can create full dependency graphs for exact reproduction on any other system.
+** Meta-Linguistic Abstraction (Optional Elective)
+This is optional but highly recommended to see the possibilities of abstraction you can attain within a language like scheme. There's a package manager [[http://dustycloud.org/misc/talks/guix/chicagolug_2015/guix_talk.html][Guix]] and distro GuixSD. You configure packages, or your entire system with one text file using a declarative DSL, and can create full dependency graphs for exact reproduction on any other system.
 You can create containers that do not require taking snapshots of virtual file storage or keeping track of imperative state. GuixSD uses a scheme init system (GNU Shepherd), which means you get all the advantages of Guile's libraries/API
-and can completely abstract your system (or hundreds of servers) as just data to be manipulated in a program. Besides teaching wizardry SICP also fills in any first year CompSci gaps.    
-</p>
+and can completely abstract your system (or hundreds of servers) as just data to be manipulated in a program if you wanted. SICP also fills in any first year CompSci gaps, though it's not an introductory text it's best to read it after you have some experience programming.    
 
-<ul class="org-ul">
-<li><a href="http://web.mit.edu/alexmv/6.037/">(Full Course) 6.037 Structure and Interpretation of Computer Programs</a>
-<ul class="org-ul">
-<li>Recorded lectures from the first edition of SICP <a href="https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-001-structure-and-interpretation-of-computer-programs-spring-2005/video-lectures/">here</a></li>
-<li>Read the excellent <a href="https://mitpress.mit.edu/sicp/full-text/book/book-Z-H-5.html#%_chap_Temp_2">forward</a> from SICP on what programming is 
-<ul class="org-ul">
-<li>There is a <a href="http://web.mit.edu/~axch/www/test_manager.html">unit test library</a> for SICP as well as an online <a href="http://icampustutor.csail.mit.edu/6.001-public/">tutorial</a></li>
-<li>Read the paper <a href="http://web.mit.edu/~axch/www/art.pdf">The Art of the Propagator</a> for adventures in symbolic programming</li>
-</ul></li>
-</ul></li>
-</ul>
-</div>
-</div>
-</div>
+- [[http://web.mit.edu/alexmv/6.037/][(Full Course) 6.037 Structure and Interpretation of Computer Programs]]
+ - Recorded lectures from the first edition of SICP [[https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-001-structure-and-interpretation-of-computer-programs-spring-2005/video-lectures/][here]]
+ - Read the excellent [[https://mitpress.mit.edu/sicp/full-text/book/book-Z-H-5.html#%_chap_Temp_2][forward]] from SICP on what programming is 
+  - There is a [[http://web.mit.edu/~axch/www/test_manager.html][unit test library]] for SICP as well as an online [[http://icampustutor.csail.mit.edu/6.001-public/][tutorial]]
+  - SICP in [[http://www.neilvandyke.org/sicp-texi/][TeXinfo]] so you can read it in emacs 
+  - Optionalread: [[http://web.mit.edu/~axch/www/art.pdf][The Art of the Propagator]] for further adventures in symbolic programming
 
-<div id="outline-container-orge2d96f2" class="outline-2">
-<h2 id="orge2d96f2"><span class="section-number-2">5</span> Fundamentals III: Functional Programming</h2>
-<div class="outline-text-2" id="text-5">
-</div><div id="outline-container-org2228ebd" class="outline-3">
-<h3 id="org2228ebd"><span class="section-number-3">5.1</span> Principles of Functional Programming</h3>
-<div class="outline-text-3" id="text-5-1">
-<p>
-The 2012 version by <a href="http://dlicata.web.wesleyan.edu/">Dan Licata</a> has the best lecture notes, optionally combine with most <a href="http://www.cs.cmu.edu/~15150/lect.html">recent</a> course notes. 
-</p>
+* Fundamentals III: Functional Programming
 
-<ul class="org-ul">
-<li><a href="http://www.cs.cmu.edu/~15150/previous-semesters/2012-spring/lect.html">(Lecture Notes) 15-150 Principles of Functional Programming</a>   
-<ul class="org-ul">
-<li>"PSML Chapters" are assigned reading from this book <a href="http://www.cs.cmu.edu/~rwh/isml/book.pdf">Programming in Standard ML</a> an excellent book that will teach you programming if you don't know it already.
-<ul class="org-ul">
-<li>If you want pair these notes with the recorded lectures from Unit 1 through 4 (specific to SML) at <a href="http://courses.cs.washington.edu/courses/cse341/16sp/#lectures">CSE341 (UW)</a></li>
-<li>Do these <a href="https://github.com/functionalCS/labs">homework assignments and labs</a> plus any exercises you find in the PSML book. Try the CSE341 <a href="http://courses.cs.washington.edu/courses/cse341/16sp/#homeworks">homework</a></li>
-<li>Note <a href="http://www.cs.cmu.edu/~15150/previous-semesters/2012-spring/tools.html">emacs setup</a> also <a href="http://courses.cs.washington.edu/courses/cse341/16sp/#software">here</a> (if you use emacs)</li>
-</ul></li>
-<li>Read this post about <a href="https://existentialtype.wordpress.com/2016/02/22/it-is-what-it-is-and-nothing-else/">what recursion is</a></li>
-</ul></li>
-</ul>
-</div>
-</div>
+** Principles of Functional Programming
+ The 2012 version by [[http://dlicata.web.wesleyan.edu/][Dan Licata]] has the best lecture notes, optionally combine with most [[http://www.cs.cmu.edu/~15150/lect.html][recent]] course notes. 
 
-<div id="outline-container-orgc40a341" class="outline-3">
-<h3 id="orgc40a341"><span class="section-number-3">5.2</span> Introduction to Parallel and Sequential Algorithms</h3>
-<div class="outline-text-3" id="text-5-2">
-<p>
+-  [[http://www.cs.cmu.edu/~15150/previous-semesters/2012-spring/lect.html][(Lecture Notes) 15-150 Principles of Functional Programming]]   
+   - "PSML Chapters" are assigned reading from this book [[http://www.cs.cmu.edu/~rwh/isml/book.pdf][Programming in Standard ML]] an excellent book that will teach you programming if you don't know it already.
+    - If you want pair these notes with the recorded lectures from Unit 1 through 4 (specific to SML) at [[http://courses.cs.washington.edu/courses/cse341/16sp/#lectures][CSE341 (UW)]]
+    - Do these [[https://github.com/functionalCS/labs][homework assignments and labs]] plus any exercises you find in the PSML book. Try the CSE341 [[http://courses.cs.washington.edu/courses/cse341/16sp/#homeworks][homework]] 
+    - Note [[http://www.cs.cmu.edu/~15150/previous-semesters/2012-spring/tools.html][emacs setup]] also [[http://courses.cs.washington.edu/courses/cse341/16sp/#software][here]] (if you use emacs)
+   - Read this post about [[https://existentialtype.wordpress.com/2016/02/22/it-is-what-it-is-and-nothing-else/][what recursion is]]
+
+** Introduction to Parallel and Sequential Algorithms
 Design, analysis and programming of sequential and parallel algorithms and data structures in a functional pseudocode similar to Standard ML.
-</p>
 
-<ul class="org-ul">
-<li><a href="http://www.parallel-algorithms-book.com/">(Book) Parallel and Sequential Algorithms</a>
-<ul class="org-ul">
-<li>Complete, self-contained book with exercises, check <a href="http://www.cs.cmu.edu/~15210/schedule.html">15-210</a> course schedule for recitation pdfs and extra material</li>
-<li>If you want to try the 15-210 labs <a href="https://github.com/kidaa/Parallel-Algorithms.git">clone this repository</a>, read the lab handout pdf and just erase the answers and try them yourself, they are done in SML (and difficult).</li>
-</ul></li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-org78b702f" class="outline-3">
-<h3 id="org78b702f"><span class="section-number-3">5.3</span> Programming Language Theory</h3>
-<div class="outline-text-3" id="text-5-3">
-<p>
+- [[http://www.parallel-algorithms-book.com/][(Book) Parallel and Sequential Algorithms]]
+  - Complete, self-contained book with exercises, check [[http://www.cs.cmu.edu/~15210/schedule.html][15-210]] course schedule for recitation pdfs and extra material
+  - If you want to try the 15-210 labs [[https://github.com/kidaa/Parallel-Algorithms.git][clone this repository]], read the lab handout pdf and just erase the answers and try them yourself, they are done in SML (and difficult).
+   
+** Programming Language Theory
 Learn the fundamental principles to the design, implementation, and application of programming languages. 
-Terence Tao article <a href="https://terrytao.wordpress.com/career-advice/there%E2%80%99s-more-to-mathematics-than-rigour-and-proofs/">on formalism and rigor</a> you want to be <i>Stage 3: post rigorous stage</i> where you can confidently reason with intuition because you have the necessary formal background.   
-</p>
+Terence Tao article [[https://terrytao.wordpress.com/career-advice/there%E2%80%99s-more-to-mathematics-than-rigour-and-proofs/][on formalism and rigor]] you want to be /Stage 3: post rigorous stage/ where you can confidently reason with intuition because you have the necessary formal background.   
 
-<ul class="org-ul">
-<li><a href="http://www.cs.cmu.edu/~rwh/pfpl.html">(Book) Practical Foundations for Programming Languages - Robert Harper</a>
-<ul class="org-ul">
-<li>Read <a href="http://www.cs.cmu.edu/~rwh/courses/ppl/phil.html">these reasons</a> for studying programming languages
-<ul class="org-ul">
-<li>Recorded lectures to accompany the book <a href="https://www.cs.uoregon.edu/research/summerschool/summer16/curriculum.php">Programming Languages Background — Robert Harper and Dan Licata</a></li>
-<li>More info on Judgements (logic) <a href="http://www.cs.cmu.edu/~fp/courses/15816-s10/lectures/01-judgments.html">here</a> and a series of recorded lectures here by Frank Pfenning on <a href="https://www.cs.uoregon.edu/research/summerschool/summer15/curriculum.html">Basic Proof Theory</a> but all this is self contained in the PFPL book.</li>
-<li>Read these <a href="http://www.cs.cmu.edu/~rwh/courses/ppl/recitations/">recitations</a> and try the assignments <a href="http://www.cs.cmu.edu/~rwh/courses/ppl/hws.html">here</a></li>
-</ul></li>
-<li>See <a href="http://mlton.org/">http://mlton.org/</a> if you are going to build your own DSL, it's one of the few whole-program optimizing compilers</li>
-</ul></li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-orge254dfb" class="outline-3">
-<h3 id="orge254dfb"><span class="section-number-3">5.4</span> Isolating Software Failure, Proving Safety and Testing</h3>
-<div class="outline-text-3" id="text-5-4">
-<p>
+- [[http://www.cs.cmu.edu/~rwh/pfpl.html][(Book) Practical Foundations for Programming Languages - Robert Harper]]
+  - Read [[http://www.cs.cmu.edu/~rwh/courses/ppl/phil.html][these reasons]] for studying programming languages
+  - Recorded lectures to accompany the book [[https://www.cs.uoregon.edu/research/summerschool/summer16/curriculum.php][Programming Languages Background — Robert Harper and Dan Licata]]
+  - More info on Judgements (logic) [[http://www.cs.cmu.edu/~fp/courses/15816-s10/lectures/01-judgments.html][here]] and a series of recorded lectures here by Frank Pfenning on [[https://www.cs.uoregon.edu/research/summerschool/summer15/curriculum.html][Basic Proof Theory]] but all this is self contained in the PFPL book.
+  - Read these [[http://www.cs.cmu.edu/~rwh/courses/ppl/recitations/][recitations]] and try the assignments [[http://www.cs.cmu.edu/~rwh/courses/ppl/hws.html][here]] 
+  
+** Isolating Software Failure, Proving Safety and Testing
 How to verify software, and strategies of programming that minimize catastrophe during failure. 
-</p>
 
-<ul class="org-ul">
-<li><a href="https://cmu-15-316.github.io/schedule/">(Lecture Notes) 15-316 Software Foundations of Security and Privacy</a>
-<ul class="org-ul">
-<li>Read about tests, strategies to safe program design (in OCaml), and proving safety.</li>
-<li>Clone this repository to get the full course w/homework assignments:  github.com/jeanqasaur/cmu-15316-spring17.git</li>
-</ul></li>
-</ul>
+- [[https://cmu-15-316.github.io/schedule/][(Lecture Notes) 15-316 Software Foundations of Security and Privacy]]
+ - Read about tests, strategies to safe program design (in OCaml), and proving safety.
+ - Clone this repository to get the full course w/homework assignments:  github.com/jeanqasaur/cmu-15316-spring17.git
+ 
 
+- [[http://www.cs.princeton.edu/~appel/vfa/][(Book) Verified Functional Algorithms]] 
+  - Part 3 of the [[https://deepspec.org/page/SF/][Deep Specifications]] interactive book series by Andrew Appel, learn by doing.
+  - Assumes you have read [[https://softwarefoundations.cis.upenn.edu/current/index.html][these]] chapters of Software Foundations Part I: Preface, Basics, Induction, Lists, Poly, Tactics, Logic, IndProp, Maps, (ProofObjects), (IndPrinciples).
+   - A good introduction to Dependent Types by Dan Licata is [[https://youtu.be/LXvP1A97oAM][here]] 
 
-<ul class="org-ul">
-<li><a href="http://www.cs.princeton.edu/~appel/vfa/">(Book) Verified Functional Algorithms</a> 
-<ul class="org-ul">
-<li>Part 3 of the <a href="https://deepspec.org/page/SF/">Deep Specifications</a> interactive book series by Andrew Appel, learn by doing.</li>
-<li>Assumes you have read <a href="https://softwarefoundations.cis.upenn.edu/current/index.html">these</a> chapters of Software Foundations Part I: Preface, Basics, Induction, Lists, Poly, Tactics, Logic, IndProp, Maps, (ProofObjects), (IndPrinciples).
-<ul class="org-ul">
-<li>A good introduction to Dependent Types by Dan Licata is <a href="https://youtu.be/LXvP1A97oAM">here</a></li>
-</ul></li>
-</ul></li>
-</ul>
-</div>
-</div>
-
-
-<div id="outline-container-org8ed439d" class="outline-3">
-<h3 id="org8ed439d"><span class="section-number-3">5.5</span> Designing Compilers (Optional Elective)</h3>
-<div class="outline-text-3" id="text-5-5">
-<p>
+** Designing Compilers (Optional Elective)
 The labs have starter code files that aren't public, alternative is to read the recommended chapters from the Appel book and implement the Tiger language using the lecture notes as supplemental material.
 This material will really solidify your understanding of programming languages and is highly recommended. 
-</p>
 
-<ul class="org-ul">
-<li><a href="http://www.cs.cmu.edu/~fp/courses/15411-f14/schedule.html">(Lecture Notes/Book) 15-411 Compiler Design</a>
-<ul class="org-ul">
-<li>Implement C0 (for background info, see 15-122 <a href="https://www.cs.cmu.edu/~rjsimmon/15122-s16/schedule.html">lecture notes</a> or the <a href="http://c0.typesafety.net/">specification</a> of C0 which is a garbage collected C-like syntax language with an interpreter shell designed for teaching imperative language contracts</li>
-<li>Assumes you have done <a href="https://www.cs.cmu.edu/~213/schedule.html">15-213</a> so have knowledge of stack frames
-<ul class="org-ul">
-<li>Uses the Andrew Appel book <a href="https://www.cs.princeton.edu/~appel/modern/ml/">Modern Compiler Implementation in ML</a></li>
-</ul></li>
-</ul></li>
-</ul>
-</div>
-</div>
+- [[http://www.cs.cmu.edu/~fp/courses/15411-f14/schedule.html][(Lecture Notes/Book) 15-411 Compiler Design]]
+ - Implement C0 (for background info, see 15-122 [[https://www.cs.cmu.edu/~rjsimmon/15122-s16/schedule.html][lecture notes]] or the [[http://c0.typesafety.net/][specification]] of C0 which is a garbage collected C-like syntax language with an interpreter shell designed for teaching imperative language contracts 
+ - Assumes you have done [[https://www.cs.cmu.edu/~213/schedule.html][15-213]] so have knowledge of stack frames
+  - Uses the Andrew Appel book [[https://www.cs.princeton.edu/~appel/modern/ml/][Modern Compiler Implementation in ML]]
 
-<div id="outline-container-orgb4170f0" class="outline-3">
-<h3 id="orgb4170f0"><span class="section-number-3">5.6</span> Physical Systems Software Security (Optional Elective)</h3>
-<div class="outline-text-3" id="text-5-6">
-<ul class="org-ul">
-<li><a href="http://symbolaris.com/course/fcps16.html">(Full Course) 15-424 Foundations of Cyber-Physical Systems</a>
-<ul class="org-ul">
-<li>Course (with recorded lectures) if you're interested in programming drones/space shuttles/robots/cars and other things that cannot fail from avoidable errors.</li>
-<li>Self contained, will teach you differential eq but assumes you already have some insight into calculus. Assumes you are somewhat familiar with invariants and <a href="https://www.cs.cmu.edu/~rjsimmon/15122-s16/schedule.html">programming via contracts</a></li>
-</ul></li>
-</ul>
-</div>
-</div>
-</div>
+** Physical Systems Software Security (Optional Elective)
 
-<div id="outline-container-org0e1c8ad" class="outline-2">
-<h2 id="org0e1c8ad"><span class="section-number-2">6</span> Fundamentals IV: Algorithms &amp; Functional Persistent Data Structures, Complexity</h2>
-<div class="outline-text-2" id="text-6">
-</div><div id="outline-container-orgba54695" class="outline-3">
-<h3 id="orgba54695"><span class="section-number-3">6.1</span> Advanced Algorithms</h3>
-<div class="outline-text-3" id="text-6-1">
-<p>
-Graduate level algorithms design course from Harvard with recorded lectures. Since you have (hopefully) already done the <i>Parallel and Sequential Algorithms</i> book, and some linear algebra you satisfy the prerequisites. 
-</p>
+- [[http://symbolaris.com/course/fcps16.html][(Full Course) 15-424 Foundations of Cyber-Physical Systems]]
+ - Course (with recorded lectures) if you're interested in programming drones/space shuttles/robots/cars and other things that cannot fail from avoidable errors.
+ - Self contained, will teach you differential eq but assumes you already have some insight into calculus. Assumes you are somewhat familiar with invariants and [[https://www.cs.cmu.edu/~rjsimmon/15122-s16/schedule.html][programming via contracts]]
 
-<ul class="org-ul">
-<li><a href="http://people.seas.harvard.edu/~cs224/fall14/lec.html">(Full Course) CS224 Advanced Algorithms</a></li>
-<li>Pair this with <a href="http://www.cambridge.org/ca/academic/subjects/computer-science/programming-languages-and-applied-logic/purely-functional-data-structures?format=PB&amp;isbn=9780521663502">Purely Functional Data Structures</a> book by Chris Okasaki (the full book, not the thesis .pdf it's missing a lot of material)
-<ul class="org-ul">
-<li>Splay trees/heaps/binomial heaps/hashing ect are all in the Okasaki book as well as CS224</li>
-<li>Compare both to see how to make data structures persistent</li>
-<li>Also see the external links in this <a href="https://en.wikipedia.org/wiki/Purely_functional_data_structure#External_links">Wikipedia</a> entry on persistent data structures for other material</li>
-</ul></li>
-<li>Try the <a href="http://people.seas.harvard.edu/~cs224/fall14/hmwk.html">psets</a></li>
-</ul>
-</div>
-</div>
+* Fundamentals IV: Algorithms & Functional Persistent Data Structures, Complexity
 
-<div id="outline-container-org4e949bd" class="outline-3">
-<h3 id="org4e949bd"><span class="section-number-3">6.2</span> Undergraduate Complexity Theory</h3>
-<div class="outline-text-3" id="text-6-2">
-<p>
-Expands on the lectures in 15-251. This material glues everything you have learned up until now together into the big picture, and gives you an introduction to real theoretical computer science.  
-</p>
+** Advanced Algorithms
+Graduate level algorithms design course from Harvard with recorded lectures. Since you have (hopefully) already done the /Parallel and Sequential Algorithms/ book, and some linear algebra you satisfy the prerequisites. 
 
-<ul class="org-ul">
-<li><a href="http://www.cs.cmu.edu/~15455/">(Full Course) 15-455 Undergraduate Complexity Theory</a> 
-<ul class="org-ul">
-<li>Recorded lectures <a href="https://www.youtube.com/playlist?list=PLm3J0oaFux3YL5vLXpzOyJiLtqLp6dCW2">here</a></li>
-<li>Uses Part III of the Sipser <a href="http://math.mit.edu/~sipser/itoc-derrs3.1.html">book</a> /Introduction to the Theory of Computation</li>
-<li>A 2017 <a href="https://www.scottaaronson.com/papers/pnp.pdf">survey</a> of the current state of P vs. NP by Scott Aaronson</li>
-</ul></li>
-</ul>
-</div>
+- [[http://people.seas.harvard.edu/~cs224/fall14/lec.html][(Full Course) CS224 Advanced Algorithms]]
+- Pair this with [[http://www.cambridge.org/ca/academic/subjects/computer-science/programming-languages-and-applied-logic/purely-functional-data-structures?format=PB&isbn=9780521663502][Purely Functional Data Structures]] book by Chris Okasaki (the full book, not the thesis .pdf it's missing a lot of material)
+ - Splay trees/heaps/binomial heaps/hashing ect are all in the Okasaki book as well as CS224
+ - Compare both to see how to make data structures persistent
+ - Also see the external links in this [[https://en.wikipedia.org/wiki/Purely_functional_data_structure#External_links][Wikipedia]] entry on persistent data structures for other material 
+- Try the [[http://people.seas.harvard.edu/~cs224/fall14/hmwk.html][psets]]  
 
-<div id="outline-container-org8712884" class="outline-4">
-<h4 id="org8712884"><span class="section-number-4">6.2.1</span> Graduate Complexity Theory (Optional Elective)</h4>
-<div class="outline-text-4" id="text-6-2-1">
-<p>
-If you liked the above material, there's many resources to study Complexity Theory at the graduate level. You may even want to <a href="https://news.ycombinator.com/item?id=6346697">try solving</a> one of the hard problems in this domain that doesn't have a lot of published papers. 
-</p>
+**  Undergraduate Complexity Theory 
+Expands on the lectures in 15-251. This is an introduction to real theoretical computer science. 
 
-<ul class="org-ul">
-<li><a href="http://www.cs.cmu.edu/~odonnell/complexity17/">(Full Course) 15-855 Graduate Computational Complexity Theory</a>
-<ul class="org-ul">
-<li>Recorded lectures <a href="https://www.youtube.com/playlist?list=PLm3J0oaFux3b8Gg1DdaJOzYNsaXYLAOKH">here</a></li>
-<li>Uses the <a href="http://theory.cs.princeton.edu/complexity/">book</a> (free draft) <i>Computational Complexity - A Modern Approach</i></li>
-</ul></li>
-</ul>
-</div>
-</div>
-</div>
-</div>
+- [[http://www.cs.cmu.edu/~15455/][(Full Course) 15-455 Undergraduate Complexity Theory]] 
+ - Recorded lectures [[https://www.youtube.com/playlist?list=PLm3J0oaFux3YL5vLXpzOyJiLtqLp6dCW2][here]]
+ - Uses Part III of the Sipser [[http://math.mit.edu/~sipser/itoc-derrs3.1.html][book]] /Introduction to the Theory of Computation/ 
+ - A 2017 [[https://www.scottaaronson.com/papers/pnp.pdf][survey]] of the current state of P vs. NP by Scott Aaronson
+
+*** Graduate Complexity Theory (Optional Elective) 
+If you liked the above material, there's many resources to study Complexity Theory at the graduate level. You may even want to [[https://news.ycombinator.com/item?id=6346697][try solving]] one of the hard problems in this domain that doesn't have a lot of published papers. 
+
+- [[http://www.cs.cmu.edu/~odonnell/complexity17/][(Full Course) 15-855 Graduate Computational Complexity Theory]]
+ - Recorded lectures [[https://www.youtube.com/playlist?list=PLm3J0oaFux3b8Gg1DdaJOzYNsaXYLAOKH][here]]
+ - Uses the [[http://theory.cs.princeton.edu/complexity/][book]] (free draft) /Computational Complexity - A Modern Approach/
+ 
+
+* You're Done the Fundamentals
+
+** Optional Extra Math   
+If you feel at this level there are gaps in your mathematical understanding, There is these scribed lecture [[http://www.cs.cmu.edu/~odonnell/toolkit13/][notes]] that give you a diverse background in math useful for theoretical CS. There is also the [[https://terrytao.wordpress.com/books/analysis-i/][book series]] /Analysis I & II/ by Terence Tao 
+to fill the gaps, you start at the very beginning, building up the naturals and reals. This [[http://bass.math.uconn.edu/real.html][book]] /Real Analysis for Graduate Students/ by Richard Bass is a crash course in graduate Analysis/Probability/Topology that can help fill those gaps as well. 
+Real (and Complex) Analysis has many applications to [[https://simons.berkeley.edu/workshops/schedule/74][CS Theory]].   
 
 
-<div id="outline-container-org3251c9c" class="outline-2">
-<h2 id="org3251c9c"><span class="section-number-2">7</span> You're Done the Fundamentals</h2>
-<div class="outline-text-2" id="text-7">
-</div><div id="outline-container-org682ff6d" class="outline-3">
-<h3 id="org682ff6d"><span class="section-number-3">7.1</span> Optional Extra Math</h3>
-<div class="outline-text-3" id="text-7-1">
-<p>
-If you feel at this level there are gaps in your mathematical understanding, There is these scribed lecture <a href="http://www.cs.cmu.edu/~odonnell/toolkit13/">notes</a> that give you a diverse background in math useful for theoretical CS. There is also the <a href="https://terrytao.wordpress.com/books/analysis-i/">book series</a> <i>Analysis I &amp; II</i> by Terence Tao 
-to fill the gaps, you start at the very beginning, building up the naturals and reals. This <a href="http://bass.math.uconn.edu/real.html">book</a> <i>Real Analysis for Graduate Students</i> by Richard Bass is a crash course in graduate Analysis/Probability/Topology that can help fill those gaps as well. 
-Real (and Complex) Analysis has many applications to <a href="https://simons.berkeley.edu/workshops/schedule/74">CS Theory</a>.   
-</p>
-</div>
-</div>
+** How to Get Better at Programming
 
+If you want to improve your skills in the trade/craft of programming here is some [[https://www.youtube.com/watch?v=dvwkaHBrDyI][advice from Richard Stallman]]. You find a large open source project somewhere with active users, write a feature, then accept feedback from the users and more experienced  project members. Repeat. 
+Keep repeating until you build up your skills in reasoning and writing for programs people actually use. You could also [[https://triplebyte.com/][get a job]] and learn directly from senior programmers. Jane Street Capital is a finance tech company that hires functional programmers 
+worldwide, you may want to [[https://blogs.janestreet.com/interviewing-at-jane-street/][apply]] there, or any bio research lab would welcome your skills after completing the /Parallel & Sequential Algorithms/ book. The test/debug methology of most industry programming consistently produces piles of junk software, so there are 
+numerous opportunities to apprentice as a [[https://www.nccgroup.trust/us/about-us/careers/current-vacancies/security-consultant/][security researcher]].  
 
-<div id="outline-container-org2690579" class="outline-3">
-<h3 id="org2690579"><span class="section-number-3">7.2</span> How to Get Better at Programming</h3>
-<div class="outline-text-3" id="text-7-2">
-<p>
-If you want to improve your skills in the trade/craft of programming here is some <a href="https://www.youtube.com/watch?v=dvwkaHBrDyI">advice from Richard Stallman</a>. You find a large open source project somewhere with active users, write a feature, then accept feedback from the users and more experienced  project members. Repeat. 
-Keep repeating until you build up your skills in reasoning and writing for programs people actually use. You could also <a href="https://triplebyte.com/">get a job</a> and learn directly from senior programmers. Jane Street Capital is a finance tech company that hires functional programmers 
-worldwide, you may want to <a href="https://blogs.janestreet.com/interviewing-at-jane-street/">apply</a> there, or any bio research lab would welcome your skills after completing the <i>Parallel &amp; Sequential Algorithms</i> book. The test/debug methology of most industry programming consistently produces piles of junk software, so there are 
-numerous opportunities to apprentice as a <a href="https://www.nccgroup.trust/us/about-us/careers/current-vacancies/security-consultant/">security researcher</a>.  
-</p>
-</div>
-</div>
-</div>
+* Graduate Research Elective: Type Theory
+Read these [[http://www.cs.cmu.edu/~15751/2016-lecture1.pdf][slides]] from /A Theorist's ToolKit/ on how to find research, how to write math in LaTeX, how to give a talk, where to ask on stackexchange ect.
 
-<div id="outline-container-org27d3eb5" class="outline-2">
-<h2 id="org27d3eb5"><span class="section-number-2">8</span> Graduate Research Elective: Type Theory</h2>
-<div class="outline-text-2" id="text-8">
-<p>
-Read these <a href="http://www.cs.cmu.edu/~15751/2016-lecture1.pdf">slides</a> from <i>A Theorist's ToolKit</i> on how to find research, how to write math in LaTeX, how to give a talk, where to ask on stackexchange ect.
-</p>
-</div>
+** Basic Proof Theory
+-  Start with the [[https://www.cs.uoregon.edu/research/summerschool/summer12/curriculum.html][lectures]] on /Basic Proof Theory/ by Frank Pfenning
+  - These [[http://www.cs.cmu.edu/~fp/courses/15317-f09/schedule.html][15-317 Constructive Logic]] notes go with the seminar, there is another set [[http://symbolaris.com/course/constlog15-schedule.html][here]]
+  - Read Martin-Löf's [[http://www.hf.uio.no/ifikk/forskning/publikasjoner/tidsskrifter/njpl/vol1no1/meaning.pdf][lecture notes]] 
 
-<div id="outline-container-org454d8ab" class="outline-3">
-<h3 id="org454d8ab"><span class="section-number-3">8.1</span> Basic Proof Theory</h3>
-<div class="outline-text-3" id="text-8-1">
-<ul class="org-ul">
-<li>Start with the <a href="https://www.cs.uoregon.edu/research/summerschool/summer12/curriculum.html">lectures</a> on <i>Basic Proof Theory</i> by Frank Pfenning
-<ul class="org-ul">
-<li>These <a href="http://www.cs.cmu.edu/~fp/courses/15317-f09/schedule.html">15-317 Constructive Logic</a> notes go with the seminar, there is another set <a href="http://symbolaris.com/course/constlog15-schedule.html">here</a></li>
-<li>Read Martin-Löf's <a href="http://www.hf.uio.no/ifikk/forskning/publikasjoner/tidsskrifter/njpl/vol1no1/meaning.pdf">lecture notes</a></li>
-</ul></li>
-</ul>
-</div>
-</div>
+** Intro to Category Theory
+-  [[https://global.oup.com/academic/product/category-theory-9780199237180?cc=ca&lang=en&][(Book) Category Theory - Steve Awodey]] 
+  - The most accessible introduction see [[https://www.andrew.cmu.edu/user/awodey/CT2errata2010.pdf][errata]], and recorded lectures by Steve Awodey [[http://www.cs.uoregon.edu/research/summerschool/summer12/curriculum.html][here(HQ mp4)]] or [[https://www.youtube.com/playlist?list=PLGCr8P_YncjVjwAxrifKgcQYtbZ3zuPlb][here(YouTube)]] 
+  - There is also this [[https://www.cs.uoregon.edu/research/summerschool/summer15/curriculum.html][seminar]] /Basic Category Theory: Semantics of Proof Theory/ by Ed Morehouse   
+   - Also see this post here explaining [[https://jeremykun.com/2013/04/24/introducing-categories/][Category Theory]] and [[https://jeremykun.com/2013/05/04/categories-as-types/][as types]] in ML
+  -  [[https://www.andrew.cmu.edu/user/awodey/catlog/][Notes]] on Categorical Logic
 
-<div id="outline-container-orgcd6c14d" class="outline-3">
-<h3 id="orgcd6c14d"><span class="section-number-3">8.2</span> Intro to Category Theory</h3>
-<div class="outline-text-3" id="text-8-2">
-<ul class="org-ul">
-<li><a href="https://global.oup.com/academic/product/category-theory-9780199237180?cc=ca&amp;lang=en&amp;">(Book) Category Theory - Steve Awodey</a> 
-<ul class="org-ul">
-<li>The most accessible introduction see <a href="https://www.andrew.cmu.edu/user/awodey/CT2errata2010.pdf">errata</a>, and recorded lectures by Steve Awodey <a href="http://www.cs.uoregon.edu/research/summerschool/summer12/curriculum.html">here(HQ mp4)</a> or <a href="https://www.youtube.com/playlist?list=PLGCr8P_YncjVjwAxrifKgcQYtbZ3zuPlb">here(YouTube)</a></li>
-<li>There is also this <a href="https://www.cs.uoregon.edu/research/summerschool/summer15/curriculum.html">seminar</a> <i>Basic Category Theory: Semantics of Proof Theory</i> by Ed Morehouse   
-<ul class="org-ul">
-<li>Also see this post here explaining <a href="https://jeremykun.com/2013/04/24/introducing-categories/">Category Theory</a> and <a href="https://jeremykun.com/2013/05/04/categories-as-types/">as types</a> in ML</li>
-</ul></li>
-<li><a href="https://www.andrew.cmu.edu/user/awodey/catlog/">Notes</a> on Categorical Logic</li>
-</ul></li>
-</ul>
-</div>
-</div>
+** Graduate Algebra Introduction    
+-  [[http://www.math.fsu.edu/~aluffi/algebraerrata.2016/Errata.html][(Book) Algebra: Chapter 0 - Paolo Aluffi]]
+  - Designed for self-learning, this is a fully self-contained, coherent treatment of graduate algebra with material from homological algebra
+  - Tons of exercises, most very difficult but Aluffi is a great writer for demystifying Category Theory and Homology 
+   - Lectures on Algebraic Topology [[https://www.youtube.com/watch?v=Ap2c1dPyIVo&list=PL6763F57A61FE6FE8][here]] to accompany the text (Homology intro, Groups ect).
 
-<div id="outline-container-org0550851" class="outline-3">
-<h3 id="org0550851"><span class="section-number-3">8.3</span> Graduate Algebra Introduction</h3>
-<div class="outline-text-3" id="text-8-3">
-<ul class="org-ul">
-<li><a href="http://www.math.fsu.edu/~aluffi/algebraerrata.2016/Errata.html">(Book) Algebra: Chapter 0 - Paolo Aluffi</a>
-<ul class="org-ul">
-<li>Designed for self-learning, this is a fully self-contained, coherent treatment of graduate algebra with material from homological algebra</li>
-<li>Tons of exercises, most very difficult but Aluffi is a great writer for demystifying Category Theory and Homology 
-<ul class="org-ul">
-<li>Lectures on Algebraic Topology <a href="https://www.youtube.com/watch?v=Ap2c1dPyIVo&amp;list=PL6763F57A61FE6FE8">here</a> to accompany the text (Homology intro, Groups ect).</li>
-</ul></li>
-</ul></li>
-</ul>
-</div>
-</div>
+** Type Theory Foundations
+  - Read Chapters 1-12, 23 and 24 from [[http://www.seas.upenn.edu/~bcpierce/tapl/index.html][TAPL]]
+  - Watch [[https://www.cs.uoregon.edu/research/summerschool/summer12/curriculum.html][seminar]] on /Type Theory Foundations/ by Robert Harper
+   - Pair with [[http://www.cse.chalmers.se/research/group/logic/book/book.pdf][Programming in Martin-Löf's Type Theory]] and the rest of the suggested reading
 
-<div id="outline-container-orgfcf46a6" class="outline-3">
-<h3 id="orgfcf46a6"><span class="section-number-3">8.4</span> Type Theory Foundations</h3>
-<div class="outline-text-3" id="text-8-4">
-<ul class="org-ul">
-<li>Read Chapters 1-12, 23 and 24 from <a href="http://www.seas.upenn.edu/~bcpierce/tapl/index.html">TAPL</a></li>
-<li>Watch <a href="https://www.cs.uoregon.edu/research/summerschool/summer12/curriculum.html">seminar</a> on <i>Type Theory Foundations</i> by Robert Harper
-<ul class="org-ul">
-<li>Pair with <a href="http://www.cse.chalmers.se/research/group/logic/book/book.pdf">Programming in Martin-Löf's Type Theory</a> and the rest of the suggested reading</li>
-</ul></li>
-</ul>
-</div>
-</div>
+** Higher Dimensional Type Theory
+Start with this [[https://youtu.be/caSOTjr1z18][talk]] /A Functional Programmer's Guide to Homotopy Type Theory/ with intro to Cubical Type Theory
 
-<div id="outline-container-org6166401" class="outline-3">
-<h3 id="org6166401"><span class="section-number-3">8.5</span> Higher Dimensional Type Theory</h3>
-<div class="outline-text-3" id="text-8-5">
-<p>
-Start with this <a href="https://youtu.be/caSOTjr1z18">talk</a> <i>A Functional Programmer's Guide to Homotopy Type Theory</i> with intro to Cubical Type Theory
-</p>
+- [[http://www.cs.cmu.edu/~rwh/courses/hott/][(Full Course) Homotopy Type Theory]]
+ - Self-contained grad seminar with recorded lectures
+  - Assigns readings from self-contained HoTT book https://homotopytypetheory.org/book/ 
+  - Try the homework, see some of the [[https://ncatlab.org/homotopytypetheory/show/open+problems][open problems]] in HoTT research 
+ - This [[https://leanprover.github.io/tutorial/][interactive tutorial]] uses HoTT to teach you automated theorem proving using Lean 2 software
 
-<ul class="org-ul">
-<li><a href="http://www.cs.cmu.edu/~rwh/courses/hott/">(Full Course) Homotopy Type Theory</a>
-<ul class="org-ul">
-<li>Self-contained grad seminar with recorded lectures
-<ul class="org-ul">
-<li>Assigns readings from self-contained HoTT book <a href="https://homotopytypetheory.org/book/">https://homotopytypetheory.org/book/</a></li>
-<li>Try the homework, see some of the <a href="https://ncatlab.org/homotopytypetheory/show/open+problems">open problems</a> in HoTT research</li>
-</ul></li>
-<li>This <a href="https://leanprover.github.io/tutorial/">interactive tutorial</a> uses HoTT to teach you automated theorem proving using Lean 2 software</li>
-</ul></li>
-</ul>
-</div>
-</div>
+** Further Research 
 
-<div id="outline-container-org4c286ea" class="outline-3">
-<h3 id="org4c286ea"><span class="section-number-3">8.6</span> Further Research</h3>
-<div class="outline-text-3" id="text-8-6">
-<ul class="org-ul">
-<li>The Type Theory <a href="http://typetheorypodcast.com/">podcast</a></li>
-<li>Use the <a href="https://en.wikipedia.org/wiki/Sci-Hub">Sci-Hub proxy</a> to get access to journals in <a href="https://www.journals.elsevier.com/journal-of-applied-logic">Applied Logic</a> or <a href="https://www.cambridge.org/core/journals/journal-of-functional-programming">Functional Programming</a> or visit a local library to ask for a printing, in a few cases the authors of a paper have a draft copy on their personal pages as well</li>
-<li>Look up your closest university's event listings for the Mathematics or Computer Science departments to find seminars, these are open to the public usually and as stated in the intro you can only become an expert by learning from other experts</li>
-<li>Try an advanced course in <a href="https://www.cs.cmu.edu/~fp/courses/15816-s10/schedule.html">Modal</a> or <a href="http://www.cs.cmu.edu/~fp/courses/15816-f16/schedule.html">Substructural</a> logic or <a href="http://www.cs.cmu.edu/~fp/courses/15816-s12/schedule.html">Linear</a> type theory</li>
-<li>Follow the research on Cubical Higher Type theory as a <a href="https://existentialtype.wordpress.com/2016/07/31/cubical-higher-type-theory-as-a-programming-language/">programming language</a></li>
-</ul>
-</div>
-</div>
-</div>
+ - The Type Theory [[http://typetheorypodcast.com/][podcast]]
+ - Use the [[https://en.wikipedia.org/wiki/Sci-Hub][Sci-Hub proxy]] to get access to journals in [[https://www.journals.elsevier.com/journal-of-applied-logic][Applied Logic]] or [[https://www.cambridge.org/core/journals/journal-of-functional-programming][Functional Programming]] or visit a local library to ask for a printing, in a few cases the authors of a paper have a draft copy on their personal pages as well 
+ - Look up your closest university's event listings for the Mathematics or Computer Science departments to find seminars, these are open to the public usually and as stated in the intro you can only become an expert by learning from other experts
+ - Try an advanced course in [[https://www.cs.cmu.edu/~fp/courses/15816-s10/schedule.html][Modal]] or [[http://www.cs.cmu.edu/~fp/courses/15816-f16/schedule.html][Substructural]] logic or [[http://www.cs.cmu.edu/~fp/courses/15816-s12/schedule.html][Linear]] type theory
+ - Follow the research on Cubical Higher Type theory as a [[https://existentialtype.wordpress.com/2016/07/31/cubical-higher-type-theory-as-a-programming-language/][programming language]] 
+ 
+* Graduate Research Elective: Machine Learning
+Read these [[http://www.cs.cmu.edu/~15751/2016-lecture1.pdf][slides]] from /A Theorist's ToolKit/ on how to find research, how to write math in LaTeX, how to give a talk, where to ask on stackexchange ect.
 
-<div id="outline-container-org1c84d79" class="outline-2">
-<h2 id="org1c84d79"><span class="section-number-2">9</span> Graduate Research Elective: Machine Learning</h2>
-<div class="outline-text-2" id="text-9">
-<p>
-Read these <a href="http://www.cs.cmu.edu/~15751/2016-lecture1.pdf">slides</a> from <i>A Theorist's ToolKit</i> on how to find research, how to write math in LaTeX, how to give a talk, where to ask on stackexchange ect.
-</p>
-</div>
+** Graduate Introduction to ML
+- [[http://www.cs.cmu.edu/~ninamf/courses/601sp15/lectures.shtml][(Full Course) 10-601 Masters Introduction to ML]]
+ - Recorded lectures and recitations
+ - Self contained, assumes you are grad level standing so have familiarity with basic probability and algebra
+ - Prepares you in the foundations to understand journals and research papers
+  - You may want to also take an introduction to Statistics like Penn State's [[https://onlinecourses.science.psu.edu/stat500/][Stat-500]] or look at the Harvard Graduate Statistics Course [[http://www.stat.harvard.edu/Academics/StatTree2011grad.html][family tree]]
 
-<div id="outline-container-org8f7a7cb" class="outline-3">
-<h3 id="org8f7a7cb"><span class="section-number-3">9.1</span> Graduate Introduction to ML</h3>
-<div class="outline-text-3" id="text-9-1">
-<ul class="org-ul">
-<li><a href="http://www.cs.cmu.edu/~ninamf/courses/601sp15/lectures.shtml">(Full Course) 10-601 Masters Introduction to ML</a>
-<ul class="org-ul">
-<li>Recorded lectures and recitations</li>
-<li>Self contained, assumes you are grad level standing so have familiarity with basic probability and algebra</li>
-<li>Prepares you in the foundations to understand journals and research papers
-<ul class="org-ul">
-<li>You may want to also take an introduction to Statistics like Penn State's <a href="https://onlinecourses.science.psu.edu/stat500/">Stat-500</a> or look at the Harvard Graduate Statistics Course <a href="http://www.stat.harvard.edu/Academics/StatTree2011grad.html">family tree</a></li>
-</ul></li>
-</ul></li>
-</ul>
-</div>
-</div>
+** Advanced Introduction to ML 
 
-<div id="outline-container-orgd002c05" class="outline-3">
-<h3 id="orgd002c05"><span class="section-number-3">9.2</span> Advanced Introduction to ML</h3>
-<div class="outline-text-3" id="text-9-2">
-<ul class="org-ul">
-<li><a href="http://www.cs.cmu.edu/~epxing/Class/10701/lecture.html">(Full Course) 10-701 PhD Introduction to ML</a>
-<ul class="org-ul">
-<li>Recorded lectures, provides a more in-depth treatment</li>
-<li>This <a href="http://www.cs.cmu.edu/~bapoczos/Classes/ML10715_2015Fall/index.html">10-715 Advanced Introduction to ML</a> also has recorded lectures</li>
-</ul></li>
-</ul>
-</div>
-</div>
+- [[http://www.cs.cmu.edu/~epxing/Class/10701/lecture.html][(Full Course) 10-701 PhD Introduction to ML]]
+ - Recorded lectures, provides a more in-depth treatment
+ - This [[http://www.cs.cmu.edu/~bapoczos/Classes/ML10715_2015Fall/index.html][10-715 Advanced Introduction to ML]] also has recorded lectures
 
-<div id="outline-container-org858737d" class="outline-3">
-<h3 id="org858737d"><span class="section-number-3">9.3</span> Algorithms for Big Data</h3>
-<div class="outline-text-3" id="text-9-3">
-<ul class="org-ul">
-<li><a href="http://people.seas.harvard.edu/~minilek/cs229r/fall15/index.html">(Full Course) CS229r Algorithms for Big Data</a>
-<ul class="org-ul">
-<li>A grad level course in designing/analyzing algorithms for massive data.</li>
-</ul></li>
-</ul>
-</div>
-</div>
+** Algorithms for Big Data 
 
-<div id="outline-container-org22ab78e" class="outline-3">
-<h3 id="org22ab78e"><span class="section-number-3">9.4</span> Further Research</h3>
-<div class="outline-text-3" id="text-9-4">
-<ul class="org-ul">
-<li>The <a href="http://www.jmlr.org/">Journal</a> of Machine Learning Research</li>
-<li>Go to conferences, meet with experts, attend workshops</li>
-<li>Open <a href="http://www.chalearn.org/">challenges</a> in ML</li>
-</ul>
-</div>
-</div>
-</div>
+- [[http://people.seas.harvard.edu/~minilek/cs229r/fall15/index.html][(Full Course) CS229r Algorithms for Big Data]]
+ - A grad level course in designing/analyzing algorithms for massive data. 
+ 
+** Further Research
+ - The [[http://www.jmlr.org/][Journal]] of Machine Learning Research
+ - Go to conferences, meet with experts, attend workshops
+ - Open [[http://www.chalearn.org/][challenges]] in ML 
+  
+* Graduate Research Elective: Cryptography
+Read these [[http://www.cs.cmu.edu/~15751/2016-lecture1.pdf][slides]] from /A Theorist's ToolKit/ on how to find research, how to write math in LaTeX, how to give a talk, where to ask on stackexchange ect.
 
-<div id="outline-container-orgb7a332e" class="outline-2">
-<h2 id="orgb7a332e"><span class="section-number-2">10</span> Graduate Research Elective: Cryptography</h2>
-<div class="outline-text-2" id="text-10">
-<p>
-Read these <a href="http://www.cs.cmu.edu/~15751/2016-lecture1.pdf">slides</a> from <i>A Theorist's ToolKit</i> on how to find research, how to write math in LaTeX, how to give a talk, where to ask on stackexchange ect.
-</p>
-</div>
-
-<div id="outline-container-org6dfeddf" class="outline-3">
-<h3 id="org6dfeddf"><span class="section-number-3">10.1</span> Graduate Cryptography Intro</h3>
-<div class="outline-text-3" id="text-10-1">
-<p>
+** Graduate Cryptography Intro 
 This course covers post-quantum crypto, elliptic curve crypto, and is taught by premiere researcher Tanja Lange (TU/e)
-</p>
 
-<ul class="org-ul">
-<li><a href="http://www.hyperelliptic.org/tanja/teaching/crypto16/">(Full Course) Masters Level Cryptology</a>
-<ul class="org-ul">
-<li>Recorded lectures <a href="http://videocollege.tue.nl/Mediasite/Catalog/catalogs/Cryptology">here</a></li>
-<li>See djb's <a href="https://cr.yp.to/talks.html">talks</a> and papers from his personal site, and <a href="http://pqcrypto.org/">post-quantum crypto</a> site</li>
-</ul></li>
-</ul>
-</div>
-</div>
+- [[http://www.hyperelliptic.org/tanja/teaching/crypto16/][(Full Course) Masters Level Cryptology]]
+ - Recorded lectures [[http://videocollege.tue.nl/Mediasite/Catalog/catalogs/Cryptology][here]]
+ - See djb's [[https://cr.yp.to/talks.html][talks]] and papers from his personal site, and [[http://pqcrypto.org/][post-quantum crypto]] site
+ 
+** Theoretical Cryptography
 
-<div id="outline-container-orgc5fff64" class="outline-3">
-<h3 id="orgc5fff64"><span class="section-number-3">10.2</span> Theoretical Cryptography</h3>
-<div class="outline-text-3" id="text-10-2">
-<ul class="org-ul">
-<li>This 2 volume <a href="http://www.wisdom.weizmann.ac.il/~oded/foc-book.html">book</a> <i>The Foundations of Cryptography</i> by Oded Goldreich</li>
-<li>Lecture <a href="https://math.mit.edu/classes/18.783/2017/lectures.html">notes</a> and recommended <a href="https://math.mit.edu/classes/18.783/2017/syllabus.html">readings</a> from 18.783 Elliptic Curves</li>
-<li>Some good course <a href="http://www.cs.cornell.edu/courses/cs4830/2010fa/lecnotes.pdf">notes</a> on resource bound cryptography</li>
-<li>Peruse the latest additions (books, lectures, papers) to the <a href="http://www.numbertheory.org/ntw/additions.html">Number Theory Web</a> and <a href="http://www.numbertheory.org/ntw/N6.html">journals</a> via Sci-Hub proxy</li>
-<li>Attend the <a href="https://www.iacr.org/workshops/tcc/">Theory of Cryptography Conference</a> or look up previous years proceedings published by Springer through Sci-Hub</li>
-</ul>
-</div>
-</div>
+- This 2 volume [[http://www.wisdom.weizmann.ac.il/~oded/foc-book.html][book]] /The Foundations of Cryptography/ by Oded Goldreich
+- Lecture [[https://math.mit.edu/classes/18.783/2017/lectures.html][notes]] and recommended [[https://math.mit.edu/classes/18.783/2017/syllabus.html][readings]] from 18.783 Elliptic Curves
+- Some good course [[http://www.cs.cornell.edu/courses/cs4830/2010fa/lecnotes.pdf][notes]] on resource bound cryptography 
+- Peruse the latest additions (books, lectures, papers) to the [[http://www.numbertheory.org/ntw/additions.html][Number Theory Web]] and [[http://www.numbertheory.org/ntw/N6.html][journals]] via Sci-Hub proxy
+- Attend the [[https://www.iacr.org/workshops/tcc/][Theory of Cryptography Conference]] or look up previous years proceedings published by Springer through Sci-Hub 
 
-<div id="outline-container-orgd02dba7" class="outline-3">
-<h3 id="orgd02dba7"><span class="section-number-3">10.3</span> Applied Cryptography</h3>
-<div class="outline-text-3" id="text-10-3">
-<ul class="org-ul">
-<li>Draft <a href="https://crypto.stanford.edu/~dabo/cryptobook/">book</a> <i>A Graduate Course in Applied Cryptography</i> - Dan Boneh and Victor Shoup</li>
-<li>Lecture <a href="https://www.ece.cmu.edu/~ece733/schedule.html">notes</a> from 18-733 Applied Cryptography</li>
-<li>Read all Daniel J. Bernstein's (and Peter Gutmann's) posts on the IETF Crypto Forum Research Group [Cfrg] archive, it's a <a href="https://mailarchive.ietf.org/arch/msg/cfrg/E-q_6ABdKfPU5XG2N6IVAs_sNhA/?qid=435ba2be2c3db3444e338cc0259ee124">master class</a> in modern <a href="https://mailarchive.ietf.org/arch/msg/cfrg/oOY_QNA6QMsTJHLLbUjch6-GLsc/?qid=435ba2be2c3db3444e338cc0259ee124">cryptanalysis</a> and he rips apart bad standards/protocol/API designs.</li>
-<li>Read <i>The Art of Computer Programming - Seminumerical Algorithms</i> by Knuth (Vol 2) chapter on Random Numbers. These same tests are still used in crypto grad courses. Try it on every library you can find that supposedly generates random numbers</li>
-<li><a href="https://www.wireguard.com/formal-verification/">Read</a> about the proof of the Wireguard protocol, a VPN that uses <code>AEAD_CHACHA20_POLY1305</code></li>
-</ul>
-</div>
-</div>
+** Applied Cryptography
 
-<div id="outline-container-orgcfb7ef5" class="outline-3">
-<h3 id="orgcfb7ef5"><span class="section-number-3">10.4</span> Coding Theory</h3>
-<div class="outline-text-3" id="text-10-4">
-<p>
+- Draft [[https://crypto.stanford.edu/~dabo/cryptobook/][book]] /A Graduate Course in Applied Cryptography/ - Dan Boneh and Victor Shoup
+- Lecture [[https://www.ece.cmu.edu/~ece733/schedule.html][notes]] from 18-733 Applied Cryptography 
+- Read all Daniel J. Bernstein's (and Peter Gutmann's) posts on the IETF Crypto Forum Research Group [Cfrg] archive, it's a [[https://mailarchive.ietf.org/arch/msg/cfrg/E-q_6ABdKfPU5XG2N6IVAs_sNhA/?qid=435ba2be2c3db3444e338cc0259ee124][master class]] in modern [[https://mailarchive.ietf.org/arch/msg/cfrg/oOY_QNA6QMsTJHLLbUjch6-GLsc/?qid=435ba2be2c3db3444e338cc0259ee124][cryptanalysis]] and he rips apart bad standards/protocol/API designs. 
+- Read /The Art of Computer Programming - Seminumerical Algorithms/ by Knuth (Vol 2) chapter on Random Numbers. These same tests are still used in crypto grad courses. Try it on every library you can find that supposedly generates random numbers 
+- [[https://www.wireguard.com/formal-verification/][Read]] about the proof of the Wireguard protocol, a VPN that uses =AEAD_CHACHA20_POLY1305=
+
+** Coding Theory
 Whereas cryptography strives to render data unintelligible to all but the intended recipient, error-correcting codes attempt to ensure data is decodable despite any disruptions introduced by the medium.  
-</p>
 
-<ul class="org-ul">
-<li>A draft <a href="http://www.cse.buffalo.edu/faculty/atri/courses/coding-theory/book/">book</a> on Coding Theory with some <a href="http://www.maths.manchester.ac.uk/~ybazlov/code/">lecture notes</a></li>
-</ul>
-</div>
-</div>
+- A draft [[http://www.cse.buffalo.edu/faculty/atri/courses/coding-theory/book/][book]] on Coding Theory with some [[http://www.maths.manchester.ac.uk/~ybazlov/code/][lecture notes]]
+  
+** Future Research
 
-<div id="outline-container-org8559965" class="outline-3">
-<h3 id="org8559965"><span class="section-number-3">10.5</span> Future Research</h3>
-<div class="outline-text-3" id="text-10-5">
-<ul class="org-ul">
-<li>Follow whatever the PhD students of djb and Tanja Lange are <a href="https://hyperelliptic.org/tanja/students.html">working on</a></li>
-<li><a href="https://2017.pqcrypto.org/school/schedule.html">Watch</a> the lectures from the 2017 Post-Quantum Crypto Summer School</li>
-<li>Read the journal of <a href="https://link.springer.com/journal/13389">Crypto Engineering</a> (use SciHub proxy)</li>
-<li>Read a <a href="http://www.math.cmu.edu/~af1p/BOOK.pdf">book</a> on Random Graphs there is a <a href="http://math.nsc.ru/conference/g2/g2c2/TokarevaN.pdf">connection</a> between Graph Theory and Cryptography</li>
-<li>Try the <a href="https://cryptopals.com/">Cryptopals</a> challenges</li>
-<li><a href="https://eprint.iacr.org/2017/627.pdf">Read</a> about the libgcrypt (GnuPG) full key recovery for 1024-bit RSA keys (and ~1 in 8, 2048-bit keys) via L3 cache timing due to bad advice in 1990s crypto engineering handbooks.</li>
-<li>Try and get into TU/e or other university graduate program, this is possible even if you don't have a bachelors degree</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div id="postamble" class="status">
-<p class="author">Author: jbh</p>
-<p class="date">Created: 2017-09-21 Thu 09:59</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
-</div>
-</body>
-</html>
+- Follow whatever the PhD students of djb and Tanja Lange are [[https://hyperelliptic.org/tanja/students.html][working on]]
+- [[https://2017.pqcrypto.org/school/schedule.html][Watch]] the lectures from the 2017 Post-Quantum Crypto Summer School 
+- Read the journal of [[https://link.springer.com/journal/13389][Crypto Engineering]] (use SciHub proxy)
+- Read a [[http://www.math.cmu.edu/~af1p/BOOK.pdf][book]] on Random Graphs there is a [[http://math.nsc.ru/conference/g2/g2c2/TokarevaN.pdf][connection]] between Graph Theory and Cryptography 
+- Try the [[https://cryptopals.com/][Cryptopals]] challenges 
+- [[https://eprint.iacr.org/2017/627.pdf][Read]] about the libgcrypt (GnuPG) full key recovery for 1024-bit RSA keys (and ~1 in 8, 2048-bit keys) via L3 cache timing due to bad advice in 1990s crypto engineering handbooks.
+- Try and get into TU/e or other university graduate program, this is possible even if you don't have a bachelors degree 
